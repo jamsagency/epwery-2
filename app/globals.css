@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 700px;
+}
+
+/* Marquee animations */
+.marquee-container,
+.marquee-container-reverse {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee,
+.marquee-reverse {
+  display: flex;
+  width: 200%;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-container-reverse .marquee-reverse {
+  animation-direction: reverse;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
