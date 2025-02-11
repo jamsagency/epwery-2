@@ -7,13 +7,34 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useState, useRef, useEffect } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
+import { useCallback } from "react"
+import { useRouter, usePathname } from "next/navigation"
 
 export default function Home() {
   const [activeService, setActiveService] = useState("salesforce")
+  const pathname = usePathname()
+  const router = useRouter()
 
   const servicesRef = useRef<HTMLDivElement>(null)
   const aboutUsRef = useRef<HTMLDivElement>(null)
   const clientsRef = useRef<HTMLDivElement>(null)
+  const contactRef = useRef<HTMLDivElement>(null)
+
+    const navigateAndScroll = useCallback(
+    (elementId: string) => {
+      const isHomePage = pathname === "/"
+
+      if (!isHomePage) {
+        router.push(`/#${elementId}`)
+      } else {
+        const element = document.getElementById(elementId)
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" })
+        }
+      }
+    },
+    [pathname, router],
+  )
 
   useEffect(() => {
     console.log("Home page mounted")
@@ -31,24 +52,24 @@ export default function Home() {
   const services = [
     {
       id: "custom",
-      title: "Custom software",
-      content: "Custom software development content goes here...",
+      title: "AI & Machine Learning",
+      content: "We specialize in AI and Machine Learning, leveraging the latest technologies to build intelligent solutions that drive innovation and operational excellence. From predictive analytics to natural language processing, our AI-driven strategies empower businesses to make smarter decisions, automate processes, and unlock new opportunities for growth.",
     },
     {
       id: "dedicated",
-      title: "Dedicated Engineering Teams",
-      content: "Dedicated Engineering Teams content goes here...",
+      title: "Team Building",
+      content: "Our Team Building services provide flexible solutions to suit your project needs, offering both full-team integration and staff augmentation. For end-to-end project execution, we assemble dedicated, cross-functional teams that include experienced Project Managers (PMs), skilled Developers, innovative UI/UX Designers, and meticulous Quality Assurance (QA) specialists, ensuring seamless collaboration and high-quality results. Alternatively, through our staff augmentation model, we supply individual team members to enhance your existing workforce, allowing you to fill specific skill gaps and scale resources dynamically while maintaining your team’s workflow and culture.",
     },
     {
       id: "ia",
-      title: "IA & machine learning",
-      content: "IA & machine learning content goes here...",
+      title: "Full Stack Web & Mobile Development",
+      content: "We deliver innovative Full Stack Web and Mobile Development services, creating user-friendly, high-performance applications that drive business success. From intuitive websites to feature-rich mobile apps, our solutions are designed to meet modern market demands, ensuring seamless functionality and a superior user experience across all devices.",
     },
     {
       id: "salesforce",
       title: "Salesforce & Cloud Architecture",
       content:
-        "Our expertise in Salesforce and Cloud Architecture empowers businesses to leverage cutting-edge technologies with ease. Thanks to our field-proven software solutions, integrating Salesforce into your existing infrastructure becomes seamless, enabling streamlined operations, enhanced scalability, and reduced licensing costs. Our tailored cloud solutions simplify the process, maximizing efficiency while driving sustainable growth.",
+        "Our expertise in Salesforce and Cloud Architecture ensures businesses can harness the power of cutting-edge technologies to streamline operations, improve scalability, and enhance customer engagement. We design and implement tailored cloud solutions, seamlessly integrating Salesforce into your existing infrastructure to maximize efficiency and foster growth.",
     },
   ]
 
@@ -74,7 +95,7 @@ export default function Home() {
               Creating lasting value through expert guidance and execution
             </p>
 
-            <Button size="lg" className="bg-white text-black hover:bg-orange-500 hover:text-white">
+            <Button onClick={() => navigateAndScroll("contact")} size="lg" className="bg-white text-black rounded hover:bg-orange-500 hover:text-white">
               Unlock success
             </Button>
 
@@ -136,18 +157,17 @@ export default function Home() {
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-services-iso-eu8ThStbSnrE6RdJmVG5cAyMZh5aAj.svg"
                   alt=""
-                  width={400}
-                  height={400}
-                  className="w-auto h-auto"
+                  width={500}
+                  height={500}
                 />
               </div>
 
-              {/* Custom software */}
-              <div className="absolute left-0 top-0">
+              {/* AI & Machine Learning */}
+              <div className="absolute left-24 top-24">
                 <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[200px]">
                   <AccordionItem value="custom" className="border-none">
                     <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
-                      Custom software
+                      AI & Machine Learning
                     </AccordionTrigger>
                     <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
                       {services.find((s) => s.id === "custom")?.content}
@@ -159,11 +179,11 @@ export default function Home() {
                   alt=""
                   width={203}
                   height={42}
-                  className="absolute left-[180px] top-[20px]"
+                  className="absolute left-[195px] top-[20px]"
                 />
               </div>
 
-              {/* Dedicated Engineering Teams */}
+              {/* Team Building */}
               <div className="absolute right-0 top-[100px]">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-ouzT5fArd7D500Tlt2kVkyoJpFTFIZ.svg"
@@ -175,7 +195,7 @@ export default function Home() {
                 <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[280px]">
                   <AccordionItem value="dedicated" className="border-none">
                     <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
-                      Dedicated Engineering Teams
+                      Team Building
                     </AccordionTrigger>
                     <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
                       {services.find((s) => s.id === "dedicated")?.content}
@@ -184,12 +204,12 @@ export default function Home() {
                 </Accordion>
               </div>
 
-              {/* IA & machine learning */}
+              {/* Full Stack Web & Mobile Development */}
               <div className="absolute left-0 bottom-0">
                 <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[200px]">
                   <AccordionItem value="ia" className="border-none">
                     <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
-                      IA & machine learning
+                      Full Stack Web & Mobile Development
                     </AccordionTrigger>
                     <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
                       {services.find((s) => s.id === "ia")?.content}
@@ -206,7 +226,7 @@ export default function Home() {
               </div>
 
               {/* Salesforce & Cloud Architecture */}
-              <div className="absolute right-0 bottom-[100px]">
+              <div className="absolute right-32 bottom-[100px]">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-long-RI97s5sBlCpI2tEslro0ABnLeS6Ea5.svg"
                   alt=""
@@ -266,7 +286,7 @@ export default function Home() {
                     For years, our commitment to identifying impactful solutions has set us apart, ensuring we stay
                     ahead without compromising on what truly matters: innovation that makes a difference.
                   </p>
-                  <div className="pt-4">
+{/*                  <div className="pt-4">
                     <Link href="/innovation">
                       <Button
                         variant="outline"
@@ -276,10 +296,10 @@ export default function Home() {
                         Learn more
                       </Button>
                     </Link>
-                  </div>
+                  </div>*/}
                 </div>
               </div>
-              <div className="aspect-video w-full bg-white rounded-lg overflow-hidden">
+{/*              <div className="aspect-video w-full bg-white rounded-lg overflow-hidden">
                 <iframe
                   width="100%"
                   height="100%"
@@ -289,7 +309,7 @@ export default function Home() {
                   allowFullScreen
                   className="w-full h-full"
                 ></iframe>
-              </div>
+              </div>*/}
             </div>
           </div>
         </section>
@@ -340,7 +360,7 @@ export default function Home() {
         </section>
 
         {/* Technology Section */}
-        <section className="py-12 overflow-hidden bg-zinc-900">
+        <section className="hidden py-12 overflow-hidden bg-zinc-900">
           <h2 className="text-4xl md:text-5xl text-white text-center mb-12">Technology</h2>
 
           {/* JS Logo Marquee */}
@@ -422,37 +442,13 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative pt-8">
-                <div className="max-w-[529px] ml-auto space-y-4">
-                  {/* Orange message to the right */}
-                  <div className="flex justify-end">
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/message-1-wNe8DDtm477f0vC6xH19lBfRocRUI3.svg"
-                      alt="Message bubble 1"
-                      width={330}
-                      height={88}
-                      className="h-auto"
-                    />
-                  </div>
-                  {/* Black messages to the left */}
-                  <div className="flex justify-start">
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/message-2-rRvQMO7PiRXwWrCcHgUMPf6o4LUEkX.svg"
-                      alt="Message bubble 2"
-                      width={340}
-                      height={56}
-                      className="h-auto"
-                    />
-                  </div>
-                  <div className="flex justify-start">
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/message-3-YUaJeWrdhdmKKnF0UyeWaaZ7izME2O.svg"
-                      alt="Message bubble 3"
-                      width={340}
-                      height={88}
-                      className="h-auto"
-                    />
-                  </div>
-                </div>
+                <Image
+                  src="/engineers-chat.png"
+                  alt="Message bubble 1"
+                  width={500}
+                  height={88}
+                  className="h-auto"
+                />
               </div>
             </div>
           </div>
@@ -486,7 +482,7 @@ export default function Home() {
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
-                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+                      src="https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg"
                       alt="John Smith"
                       width={64}
                       height={64}
@@ -496,20 +492,19 @@ export default function Home() {
                 </div>
                 <blockquote className="text-center mb-6">
                   <p className="text-zinc-600 leading-relaxed">
-                    "I've been consistently impressed with the quality of service provided by EPWERY. They have exceeded
-                    my expectations and delivered exceptional results. Highly recommended!"
+                    "Epwery helped us get a world class software team up and running in record time. The team is highly skilled and versatile and has become a great extension to our onsite full time employees."
                   </p>
                 </blockquote>
                 <div className="text-center">
-                  <Image
+  {/*                <Image
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/640px-LinkedIn_logo_initials.png"
                     alt="LinkedIn"
                     width={100}
                     height={24}
                     className="h-6 w-auto mx-auto mb-3"
-                  />
-                  <p className="font-semibold text-zinc-900">John Smith</p>
-                  <p className="text-zinc-500">VP of Engineering</p>
+                  />*/}
+                  <p className="font-semibold text-zinc-900">Vinay Gidwaney</p>
+                  <p className="text-zinc-500">Entrepreneur and advisor</p>
                 </div>
               </div>
 
@@ -518,7 +513,7 @@ export default function Home() {
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
-                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80"
+                      src="https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE"
                       alt="Sarah Chen"
                       width={64}
                       height={64}
@@ -528,20 +523,19 @@ export default function Home() {
                 </div>
                 <blockquote className="text-center mb-6">
                   <p className="text-zinc-600 leading-relaxed">
-                    "Working with EPWERY has transformed our development process. Their technical expertise and
-                    dedication to quality have made them an invaluable partner in our success."
+                    "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses."
                   </p>
                 </blockquote>
                 <div className="text-center">
-                  <Image
+ {/*                 <Image
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
                     alt="Google"
                     width={100}
                     height={24}
                     className="h-6 w-auto mx-auto mb-3"
-                  />
-                  <p className="font-semibold text-zinc-900">Sarah Chen</p>
-                  <p className="text-zinc-500">Director of Technology</p>
+                  />*/}
+                  <p className="font-semibold text-zinc-900">Poonam Kalinani</p>
+                  <p className="text-zinc-500">Chief Product Officer</p>
                 </div>
               </div>
 
@@ -550,7 +544,7 @@ export default function Home() {
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
-                      src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7"
+                      src="https://media.licdn.com/dms/image/v2/C5603AQF-13tyiwjybQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1657300368033?e=1744848000&v=beta&t=jIovGveIgqDOC5nXUK1LXrSzcNoDnFr4FLAv02Zj7Ng"
                       alt="Michael Rodriguez"
                       width={64}
                       height={64}
@@ -560,20 +554,19 @@ export default function Home() {
                 </div>
                 <blockquote className="text-center mb-6">
                   <p className="text-zinc-600 leading-relaxed">
-                    "EPWERY's innovative solutions and professional approach have consistently delivered outstanding
-                    results. Their team's expertise and commitment to excellence are truly remarkable."
+                    "Our exceptional EPWERY team is fully dedicated to Ansel’s success, embracing our mission and values while driving rapid innovation from ideation to market—a true competitive edge."
                   </p>
                 </blockquote>
                 <div className="text-center">
-                  <Image
+{/*                  <Image
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png"
                     alt="Amazon"
                     width={100}
                     height={24}
                     className="h-6 w-auto mx-auto mb-3"
-                  />
-                  <p className="font-semibold text-zinc-900">Michael Rodriguez</p>
-                  <p className="text-zinc-500">CTO</p>
+                  />*/}
+                  <p className="font-semibold text-zinc-900">Veer Gidwaney</p>
+                  <p className="text-zinc-500">CEO</p>
                 </div>
               </div>
             </div>
@@ -581,7 +574,7 @@ export default function Home() {
         </section>
 
         {/* Schedule Section */}
-        <section className="relative py-24 bg-zinc-900 overflow-hidden">
+        <section ref={contactRef} id="contact" className="relative py-24 bg-zinc-900 overflow-hidden">
           {/* Background Pattern */}
           <div
             className="absolute inset-0 opacity-20"
@@ -598,14 +591,13 @@ export default function Home() {
             </h2>
 
             <div className="max-w-4xl mx-auto bg-white rounded-3xl overflow-hidden shadow-xl">
-              <Image
-                src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/calendar-j95zM736cacuVR4EjzDC0IHUsWrlNY.png"
-                alt="Calendar"
-                width={1000}
-                height={700}
-                className="w-full h-auto"
-              />
+              <div
+                class="calendly-inline-widget"
+                data-url="https://calendly.com/admin-epwery/30min?background_color=dc0808&text_color=26db13&primary_color=ff7d00"
+              ></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
             </div>
+
           </div>
         </section>
       </main>

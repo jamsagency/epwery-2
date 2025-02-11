@@ -63,7 +63,7 @@ export default function Navbar() {
           <button onClick={() => navigateAndScroll("clients")} className="text-white hover:text-orange-500 transition">
             Clients
           </button>
-          <Button variant="outline" className="bg-white text-black hover:bg-orange-500 hover:text-white">
+          <Button onClick={() => navigateAndScroll("contact")} variant="outline" className="bg-white rounded text-black hover:bg-orange-500 hover:text-white">
             Get started
           </Button>
         </nav>
