@@ -17,6 +17,7 @@ export default function Home() {
   const pathname = usePathname()
   const router = useRouter()
   const [isMounted, setIsMounted] = useState(false)
+  const [visibleMessages, setVisibleMessages] = useState<number[]>([])
 
   useEffect(() => {
     setIsMounted(true)
@@ -56,6 +57,37 @@ export default function Home() {
     })
   }, [])
 
+  useEffect(() => {
+    const showMessage = (index: number) => {
+      setVisibleMessages((prev) => [...prev, index])
+    }
+
+    const resetMessages = () => {
+      setVisibleMessages([])
+    }
+
+    const animationSequence = async () => {
+      // Show messages one by one
+      for (let i = 1; i <= 4; i++) {
+        await new Promise((resolve) => setTimeout(resolve, 1000))
+        showMessage(i)
+      }
+
+      // Wait before resetting
+      await new Promise((resolve) => setTimeout(resolve, 2000))
+      resetMessages()
+    }
+
+    const interval = setInterval(() => {
+      animationSequence()
+    }, 6000) // Total animation cycle duration
+
+    // Start the animation immediately
+    animationSequence()
+
+    return () => clearInterval(interval)
+  }, [])
+
   const services = [
     {
       id: "custom",
@@ -89,19 +121,25 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-32 pb-24 overflow-hidden" style={{
-    backgroundImage: "radial-gradient(circle at 50% 100%, #ffb900, #f15c05 24%, #1d1d1d 47%)",
-    color: "transparent",
-  }}>
+        <section
+          className="relative pt-32 pb-24 overflow-hidden"
+          style={{
+            backgroundImage: "radial-gradient(circle at 50% 100%, #ffb900, #f15c05 24%, #1d1d1d 47%)",
+            color: "transparent",
+          }}
+        >
           <div className="absolute inset-0 bg-gradient-to-b from-orange-600/20 via-transparent to-transparent opacity-40" />
 
           <div className="container relative z-10 text-center">
-            <p className="text-orange-500 font-medium mb-6" style={{
-    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
-    WebkitBackgroundClip: "text",
-    backgroundClip: "text",
-    color: "transparent",
-  }}>
+            <p
+              className="text-orange-500 font-medium mb-6"
+              style={{
+                backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+                color: "transparent",
+              }}
+            >
               <span className="font-semibold">PROVEN EXCELLENCE IN</span> <span className="italic">ACTION</span>
             </p>
 
@@ -154,18 +192,21 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section ref={servicesRef} id="services" className="py-24">
+        <section ref={servicesRef} id="services" className="pt-24 pb-48">
           <div className="container">
-            <div className="max-w-4xl mb-24">
-              <p className="text-orange-500 text-lg mb-6 font-semibold" style={{
-    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
-    WebkitBackgroundClip: "text",
-    backgroundClip: "text",
-    color: "transparent",
-  }}>
+            <div className="max-w-4xl mb-16">
+              <p
+                className="text-orange-500 text-lg mb-6 font-semibold"
+                style={{
+                  backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+                  WebkitBackgroundClip: "text",
+                  backgroundClip: "text",
+                  color: "transparent",
+                }}
+              >
                 We don't just offer services; we deliver honest, high-quality solutions.
               </p>
-              <h2 className="text-4xl md:text-5xl text-white mb-8">
+              <h2 className="font-bold text-4xl md:text-5xl text-white mb-8">
                 Your success <span className="font-normal italic">is our priority</span>, backed by an{" "}
                 <span className="font-normal italic">honest and professional approach.</span>
               </h2>
@@ -184,19 +225,26 @@ export default function Home() {
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-services-iso-eu8ThStbSnrE6RdJmVG5cAyMZh5aAj.svg"
                   alt=""
-                  width={500}
-                  height={500}
+                  width={450}
+                  height={450}
                 />
               </div>
 
               {/* AI & Machine Learning */}
-              <div className="absolute left-24 top-24">
+              <div className="absolute left-0 top-32 [&[data-state=open]]:z-30">
                 <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[200px]">
                   <AccordionItem value="custom" className="border-none">
-                    <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
+                    <AccordionTrigger
+                      className="px-4 py-3 text-white hover:no-underline font-bold"
+                      style={{
+                        backgroundImage:
+                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                        borderRadius: "8px",
+                      }}
+                    >
                       AI & Machine Learning
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
                       {services.find((s) => s.id === "custom")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -206,25 +254,32 @@ export default function Home() {
                   alt=""
                   width={203}
                   height={42}
-                  className="absolute left-[195px] top-[20px]"
+                  className="absolute left-[100px] top-[85px]"
                 />
               </div>
 
               {/* Team Building */}
-              <div className="absolute right-0 top-[100px]">
+              <div className="absolute right-32 top-[230px] [&[data-state=open]]:z-30">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-ouzT5fArd7D500Tlt2kVkyoJpFTFIZ.svg"
                   alt=""
                   width={161}
                   height={45}
-                  className="absolute right-[280px] top-[20px]"
+                  className="absolute right-[300px] top-[20px]"
                 />
                 <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[280px]">
                   <AccordionItem value="dedicated" className="border-none">
-                    <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
+                    <AccordionTrigger
+                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline"
+                      style={{
+                        backgroundImage:
+                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                        borderRadius: "8px",
+                      }}
+                    >
                       Team Building
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
                       {services.find((s) => s.id === "dedicated")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -232,13 +287,20 @@ export default function Home() {
               </div>
 
               {/* Full Stack Web & Mobile Development */}
-              <div className="absolute left-0 bottom-0">
+              <div className="absolute left-12 top-96 [&[data-state=open]]:z-30">
                 <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[200px]">
                   <AccordionItem value="ia" className="border-none">
-                    <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
+                    <AccordionTrigger
+                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline"
+                      style={{
+                        backgroundImage:
+                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                        borderRadius: "8px",
+                      }}
+                    >
                       Full Stack Web & Mobile Development
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
                       {services.find((s) => s.id === "ia")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -248,25 +310,32 @@ export default function Home() {
                   alt=""
                   width={203}
                   height={42}
-                  className="absolute left-[180px] bottom-[20px]"
+                  className="absolute left-[100px] top-[-55px]"
                 />
               </div>
 
               {/* Salesforce & Cloud Architecture */}
-              <div className="absolute right-32 bottom-[100px]">
+              <div className="absolute right-0 top-96 [&[data-state=open]]:z-30">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-long-RI97s5sBlCpI2tEslro0ABnLeS6Ea5.svg"
                   alt=""
                   width={236}
                   height={58}
-                  className="absolute right-[280px] bottom-[20px]"
+                  className="absolute right-[300px] top-[32px]"
                 />
                 <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[280px]">
                   <AccordionItem value="salesforce" className="border-none">
-                    <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
+                    <AccordionTrigger
+                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline"
+                      style={{
+                        backgroundImage:
+                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 119%)",
+                        borderRadius: "8px",
+                      }}
+                    >
                       Salesforce & Cloud Architecture
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
                       {services.find((s) => s.id === "salesforce")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -287,7 +356,7 @@ export default function Home() {
                     <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
                       {service.title}
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/50 mt-2 p-4 rounded-lg text-gray-300">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
                       {service.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -324,8 +393,18 @@ export default function Home() {
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="max-w-xl">
-                <p className="text-orange-500 text-lg mb-6">The Perfect Nearshore Partner</p>
-                <h2 className="text-4xl md:text-5xl text-white mb-8">
+                <p
+                  className="text-lg mb-6 font-semibold"
+                  style={{
+                    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  The Perfect Nearshore Partner
+                </p>
+                <h2 className="text-4xl md:text-5xl text-white mb-8 font-bold">
                   Seamless Collaboration, <span className="font-normal italic">Exceptional Value</span>
                 </h2>
                 <div className="space-y-6 text-gray-300">
@@ -452,8 +531,18 @@ export default function Home() {
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="max-w-xl">
-                <p className="text-[#FF4D00] text-lg mb-6">A Partner Who Truly Understands Technology</p>
-                <h2 className="text-4xl md:text-5xl text-zinc-900 mb-8">
+                <p
+                  className="text-lg mb-6 font-semibold"
+                  style={{
+                    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  A Partner Who Truly Understands Technology
+                </p>
+                <h2 className="text-4xl md:text-5xl text-zinc-900 mb-8 font-bold">
                   Engineers, <span className="font-normal italic">Not</span>
                   <br />
                   <span className="font-normal italic">Salespeople.</span>
@@ -481,7 +570,44 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative pt-8">
-                <Image src="/engineers-chat.png" alt="Message bubble 1" width={500} height={88} className="h-auto" />
+                <div className="relative h-[600px]">
+                  <Image
+                    src="/message-1.svg"
+                    alt="Message 1"
+                    width={500}
+                    height={88}
+                    className={`absolute top-0 transition-opacity duration-500 ${
+                      visibleMessages.includes(1) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  <Image
+                    src="/message-2.svg"
+                    alt="Message 2"
+                    width={500}
+                    height={88}
+                    className={`absolute top-[120px] transition-opacity duration-500 ${
+                      visibleMessages.includes(2) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  <Image
+                    src="/message-3.svg"
+                    alt="Message 3"
+                    width={500}
+                    height={88}
+                    className={`absolute top-[240px] transition-opacity duration-500 ${
+                      visibleMessages.includes(3) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  <Image
+                    src="/message-4.svg"
+                    alt="Message 4"
+                    width={500}
+                    height={88}
+                    className={`absolute top-[360px] transition-opacity duration-500 ${
+                      visibleMessages.includes(4) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -501,7 +627,7 @@ export default function Home() {
 
           <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl text-white mb-8">What our clients are saying</h2>
+              <h2 className="text-4xl md:text-5xl text-white mb-8 font-bold">What our clients are saying</h2>
               <p className="text-lg text-gray-300">
                 Our commitment to excellence and client satisfaction speaks through the success stories of those who've
                 partnered with us. Here's what some of our valued clients have to share about their experience working
@@ -601,7 +727,7 @@ export default function Home() {
           />
 
           <div className="container relative z-10">
-            <h2 className="text-4xl md:text-5xl text-white text-center mb-16">
+            <h2 className="text-4xl md:text-5xl text-white text-center mb-16 font-bold">
               Schedule a free 30-minute consultation
             </h2>
 

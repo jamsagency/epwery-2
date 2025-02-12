@@ -80,7 +80,7 @@ export default function Footer() {
           <button onClick={() => navigateAndScroll("clients")} className="text-white hover:text-orange-500 transition">
             Clients
           </button>
-          <Button onClick={() => navigateAndScroll("contact")} className="bg-white text-black hover:bg-orange-500 hover:text-white rounded-full">
+          <Button onClick={() => navigateAndScroll("contact")} className="bg-white text-black hover:bg-orange-500 hover:text-white rounded-full font-semibold">
             Unlock success
           </Button>
         </div>
