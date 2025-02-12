@@ -1,7 +1,6 @@
 "use client"
 
 import Image from "next/image"
-import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useState, useRef, useEffect } from "react"
@@ -9,18 +8,26 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { useCallback } from "react"
 import { useRouter, usePathname } from "next/navigation"
+import dynamic from "next/dynamic"
+
+const CalendlyWidget = dynamic(() => import("@/components/CalendlyWidget"), { ssr: false })
 
 export default function Home() {
   const [activeService, setActiveService] = useState("salesforce")
   const pathname = usePathname()
   const router = useRouter()
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const servicesRef = useRef<HTMLDivElement>(null)
   const aboutUsRef = useRef<HTMLDivElement>(null)
   const clientsRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
 
-    const navigateAndScroll = useCallback(
+  const navigateAndScroll = useCallback(
     (elementId: string) => {
       const isHomePage = pathname === "/"
 
@@ -53,17 +60,20 @@ export default function Home() {
     {
       id: "custom",
       title: "AI & Machine Learning",
-      content: "We specialize in AI and Machine Learning, leveraging the latest technologies to build intelligent solutions that drive innovation and operational excellence. From predictive analytics to natural language processing, our AI-driven strategies empower businesses to make smarter decisions, automate processes, and unlock new opportunities for growth.",
+      content:
+        "We specialize in AI and Machine Learning, leveraging the latest technologies to build intelligent solutions that drive innovation and operational excellence. From predictive analytics to natural language processing, our AI-driven strategies empower businesses to make smarter decisions, automate processes, and unlock new opportunities for growth.",
     },
     {
       id: "dedicated",
       title: "Team Building",
-      content: "Our Team Building services provide flexible solutions to suit your project needs, offering both full-team integration and staff augmentation. For end-to-end project execution, we assemble dedicated, cross-functional teams that include experienced Project Managers (PMs), skilled Developers, innovative UI/UX Designers, and meticulous Quality Assurance (QA) specialists, ensuring seamless collaboration and high-quality results. Alternatively, through our staff augmentation model, we supply individual team members to enhance your existing workforce, allowing you to fill specific skill gaps and scale resources dynamically while maintaining your team’s workflow and culture.",
+      content:
+        "Our Team Building services provide flexible solutions to suit your project needs, offering both full-team integration and staff augmentation. For end-to-end project execution, we assemble dedicated, cross-functional teams that include experienced Project Managers (PMs), skilled Developers, innovative UI/UX Designers, and meticulous Quality Assurance (QA) specialists, ensuring seamless collaboration and high-quality results. Alternatively, through our staff augmentation model, we supply individual team members to enhance your existing workforce, allowing you to fill specific skill gaps and scale resources dynamically while maintaining your team’s workflow and culture.",
     },
     {
       id: "ia",
       title: "Full Stack Web & Mobile Development",
-      content: "We deliver innovative Full Stack Web and Mobile Development services, creating user-friendly, high-performance applications that drive business success. From intuitive websites to feature-rich mobile apps, our solutions are designed to meet modern market demands, ensuring seamless functionality and a superior user experience across all devices.",
+      content:
+        "We deliver innovative Full Stack Web and Mobile Development services, creating user-friendly, high-performance applications that drive business success. From intuitive websites to feature-rich mobile apps, our solutions are designed to meet modern market demands, ensuring seamless functionality and a superior user experience across all devices.",
     },
     {
       id: "salesforce",
@@ -79,28 +89,40 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative pt-32 pb-24 overflow-hidden">
+        <section className="relative pt-32 pb-24 overflow-hidden" style={{
+    backgroundImage: "radial-gradient(circle at 50% 100%, #ffb900, #f15c05 24%, #1d1d1d 47%)",
+    color: "transparent",
+  }}>
           <div className="absolute inset-0 bg-gradient-to-b from-orange-600/20 via-transparent to-transparent opacity-40" />
 
           <div className="container relative z-10 text-center">
-            <p className="text-orange-500 font-medium mb-6">
-              <span className="text-white">PROVEN EXCELLENCE IN</span> ACTION
+            <p className="text-orange-500 font-medium mb-6" style={{
+    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    color: "transparent",
+  }}>
+              <span className="font-semibold">PROVEN EXCELLENCE IN</span> <span className="italic">ACTION</span>
             </p>
 
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6">
               Digital <span className="italic font-normal">Transformation</span> Specialists
             </h1>
 
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">
+            <p className="text-2xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-12">
               Creating lasting value through expert guidance and execution
             </p>
 
-            <Button onClick={() => navigateAndScroll("contact")} size="lg" className="bg-white text-black rounded hover:bg-orange-500 hover:text-white">
+            <Button
+              onClick={() => navigateAndScroll("contact")}
+              size="lg"
+              className="bg-white text-black font-semibold rounded-full hover:bg-orange-500 hover:text-white"
+            >
               Unlock success
             </Button>
 
-            <div className="mt-24">
-              <h2 className="text-2xl md:text-3xl text-white mb-12">Our numbers don't lie</h2>
+            <div className="mt-16">
+              <h2 className="text-2xl md:text-3xl text-white mb-4">Our numbers don't lie</h2>
 
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600/30 via-orange-500/30 to-orange-600/30 blur-3xl" />
@@ -135,7 +157,12 @@ export default function Home() {
         <section ref={servicesRef} id="services" className="py-24">
           <div className="container">
             <div className="max-w-4xl mb-24">
-              <p className="text-orange-500 text-lg mb-6">
+              <p className="text-orange-500 text-lg mb-6 font-semibold" style={{
+    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+    color: "transparent",
+  }}>
                 We don't just offer services; we deliver honest, high-quality solutions.
               </p>
               <h2 className="text-4xl md:text-5xl text-white mb-8">
@@ -286,30 +313,8 @@ export default function Home() {
                     For years, our commitment to identifying impactful solutions has set us apart, ensuring we stay
                     ahead without compromising on what truly matters: innovation that makes a difference.
                   </p>
-{/*                  <div className="pt-4">
-                    <Link href="/innovation">
-                      <Button
-                        variant="outline"
-                        size="lg"
-                        className="bg-zinc-900 text-white border-zinc-900 hover:bg-zinc-800 hover:text-white"
-                      >
-                        Learn more
-                      </Button>
-                    </Link>
-                  </div>*/}
                 </div>
               </div>
-{/*              <div className="aspect-video w-full bg-white rounded-lg overflow-hidden">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                  title="Innovation at Epwery"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
-                ></iframe>
-              </div>*/}
             </div>
           </div>
         </section>
@@ -360,47 +365,81 @@ export default function Home() {
         </section>
 
         {/* Technology Section */}
-        <section className="hidden py-12 overflow-hidden bg-zinc-900">
+        <section className="py-12 overflow-hidden bg-zinc-900">
           <h2 className="text-4xl md:text-5xl text-white text-center mb-12">Technology</h2>
 
-          {/* JS Logo Marquee */}
-          <div className="relative mb-8">
+          {/* Technology Logos Marquee */}
+          <div className="relative mb-4">
             <div className="marquee-container">
               <div className="marquee">
-                {[...Array(30)].map((_, i) => (
-                  <div
-                    key={`js-${i}`}
-                    className="flex-shrink-0 flex items-center justify-center bg-white rounded-lg w-[81px] h-[81px] mx-2"
-                  >
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-js-uWVJ9FnIpHnwSETLNjWlVRxtKa1PLv.png"
-                      alt="JavaScript"
-                      width={65}
-                      height={65}
-                      className="w-[65px] h-[65px]"
-                    />
+                {[...Array(8)].map((_, setIndex) => (
+                  <div key={`set-${setIndex}`} className="flex gap-4">
+                    {[
+                      { src: "/salesforce.png", alt: "Salesforce" },
+                      { src: "/azure.png", alt: "Microsoft Azure" },
+                      { src: "/openai.png", alt: "OpenAI" },
+                      { src: "/aws.png", alt: "AWS" },
+                    ].map((logo, i) => (
+                      <div
+                        key={`logo-${setIndex}-${i}`}
+                        className="flex-shrink-0 flex items-center justify-center bg-zinc-800/50 rounded-lg w-[120px] h-[60px] px-4"
+                      >
+                        <Image
+                          src={logo.src || "/placeholder.svg"}
+                          alt={logo.alt}
+                          width={100}
+                          height={40}
+                          className="w-auto h-8 object-contain"
+                        />
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Python Logo Marquee (Reverse) */}
+          {/* Second Technology Logos Marquee (Reverse) */}
           <div className="relative">
-            <div className="marquee-container marquee-container-reverse">
+            <div className="marquee-container">
               <div className="marquee marquee-reverse">
-                {[...Array(30)].map((_, i) => (
-                  <div
-                    key={`python-${i}`}
-                    className="flex-shrink-0 flex items-center justify-center bg-zinc-800 rounded-lg w-[152px] h-[56px] mx-2"
-                  >
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-python-UMQHK6bdQdOJajr7Dzvcq5OTuwNMeS.svg"
-                      alt="Python"
-                      width={136}
-                      height={40}
-                      className="w-[136px] h-[40px]"
-                    />
+                {[...Array(8)].map((_, setIndex) => (
+                  <div key={`set-${setIndex}`} className="rounded-lg flex gap-4">
+                    {[
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/js-P11bfwIQEJwhpT29R2YPlH9rg2l1k4.png",
+                        alt: "JavaScript",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/stripe-2wNVOi3Kh7QDNJpu8cqdqJKlUIZhiG.png",
+                        alt: "Stripe",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/neo4j-s7ttZpMpY3UICHuN3sHh284pOmdBIw.png",
+                        alt: "Neo4j",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/python-JkgWiLA77Cxk3IfxUW6bTXC8VJgkbg.png",
+                        alt: "Python",
+                        bg: "bg-zinc-800/50",
+                      },
+                    ].map((logo, i) => (
+                      <div
+                        key={`logo-${setIndex}-${i}`}
+                        className={`flex-shrink-0 flex items-center justify-center ${logo.bg} rounded-lg w-[120px] h-[60px] px-4`}
+                      >
+                        <Image
+                          src={logo.src || "/placeholder.svg"}
+                          alt={logo.alt}
+                          width={100}
+                          height={40}
+                          className="w-auto h-8 object-contain"
+                        />
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
@@ -442,13 +481,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative pt-8">
-                <Image
-                  src="/engineers-chat.png"
-                  alt="Message bubble 1"
-                  width={500}
-                  height={88}
-                  className="h-auto"
-                />
+                <Image src="/engineers-chat.png" alt="Message bubble 1" width={500} height={88} className="h-auto" />
               </div>
             </div>
           </div>
@@ -492,17 +525,11 @@ export default function Home() {
                 </div>
                 <blockquote className="text-center mb-6">
                   <p className="text-zinc-600 leading-relaxed">
-                    "Epwery helped us get a world class software team up and running in record time. The team is highly skilled and versatile and has become a great extension to our onsite full time employees."
+                    "Epwery helped us get a world class software team up and running in record time. The team is highly
+                    skilled and versatile and has become a great extension to our onsite full time employees."
                   </p>
                 </blockquote>
                 <div className="text-center">
-  {/*                <Image
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/640px-LinkedIn_logo_initials.png"
-                    alt="LinkedIn"
-                    width={100}
-                    height={24}
-                    className="h-6 w-auto mx-auto mb-3"
-                  />*/}
                   <p className="font-semibold text-zinc-900">Vinay Gidwaney</p>
                   <p className="text-zinc-500">Entrepreneur and advisor</p>
                 </div>
@@ -523,17 +550,11 @@ export default function Home() {
                 </div>
                 <blockquote className="text-center mb-6">
                   <p className="text-zinc-600 leading-relaxed">
-                    "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses."
+                    "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling
+                    products. Their leadership and practical architecture make them invaluable for product businesses."
                   </p>
                 </blockquote>
                 <div className="text-center">
- {/*                 <Image
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/2560px-Google_2015_logo.svg.png"
-                    alt="Google"
-                    width={100}
-                    height={24}
-                    className="h-6 w-auto mx-auto mb-3"
-                  />*/}
                   <p className="font-semibold text-zinc-900">Poonam Kalinani</p>
                   <p className="text-zinc-500">Chief Product Officer</p>
                 </div>
@@ -554,17 +575,11 @@ export default function Home() {
                 </div>
                 <blockquote className="text-center mb-6">
                   <p className="text-zinc-600 leading-relaxed">
-                    "Our exceptional EPWERY team is fully dedicated to Ansel’s success, embracing our mission and values while driving rapid innovation from ideation to market—a true competitive edge."
+                    "Our exceptional EPWERY team is fully dedicated to Ansel’s success, embracing our mission and values
+                    while driving rapid innovation from ideation to market—a true competitive edge."
                   </p>
                 </blockquote>
                 <div className="text-center">
-{/*                  <Image
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/2560px-Amazon_logo.svg.png"
-                    alt="Amazon"
-                    width={100}
-                    height={24}
-                    className="h-6 w-auto mx-auto mb-3"
-                  />*/}
                   <p className="font-semibold text-zinc-900">Veer Gidwaney</p>
                   <p className="text-zinc-500">CEO</p>
                 </div>
@@ -591,13 +606,8 @@ export default function Home() {
             </h2>
 
             <div className="max-w-4xl mx-auto bg-white rounded-3xl overflow-hidden shadow-xl">
-              <div
-                class="calendly-inline-widget"
-                data-url="https://calendly.com/admin-epwery/30min?background_color=dc0808&text_color=26db13&primary_color=ff7d00"
-              ></div>
-              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              <CalendlyWidget />
             </div>
-
           </div>
         </section>
       </main>

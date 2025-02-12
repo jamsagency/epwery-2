@@ -8,29 +8,41 @@
 }
 
 /* Marquee animations */
-.marquee-container,
-.marquee-container-reverse {
+.marquee-container {
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
-.marquee,
-.marquee-reverse {
+.marquee {
   display: flex;
-  width: 200%;
-  animation: marquee 20s linear infinite;
-}
-
-.marquee-container-reverse .marquee-reverse {
-  animation-direction: reverse;
+  gap: 1rem; /* Add gap between sets */
+  animation: marquee 40s linear infinite;
 }
 
 @keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
     transform: translateX(-50%);
   }
 }
+
+.marquee-reverse {
+  display: flex;
+  gap: 1rem;
+  animation: marquee-reverse 40s linear infinite;
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* Removed redundant and conflicting styles */
 
