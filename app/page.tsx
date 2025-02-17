@@ -3,14 +3,57 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { useState, useRef, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { useCallback } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import dynamic from "next/dynamic"
+import { useEffect as useEffect2, useState as useState2, useRef as useRef2 } from "react"
 
 const CalendlyWidget = dynamic(() => import("@/components/CalendlyWidget"), { ssr: false })
+
+const AnimatedCounter = ({ end, duration = 2000 }) => {
+  const [count, setCount] = useState2(0)
+  const countRef = useRef2(null)
+
+  useEffect2(() => {
+    const startTime = performance.now()
+    const endValue = Number.parseFloat(end.replace(/[^0-9.-]+/g, ""))
+
+    const updateCount = (currentTime) => {
+      const elapsedTime = currentTime - startTime
+      const progress = Math.min(elapsedTime / duration, 1)
+      const currentCount = Math.floor(progress * endValue)
+
+      setCount(currentCount)
+
+      if (progress < 1) {
+        countRef.current = requestAnimationFrame(updateCount)
+      } else {
+        setCount(endValue)
+      }
+    }
+
+    countRef.current = requestAnimationFrame(updateCount)
+
+    return () => {
+      if (countRef.current) {
+        cancelAnimationFrame(countRef.current)
+      }
+    }
+  }, [end, duration])
+
+  const formatNumber = (num) => {
+    if (end.includes("k")) return `${num}k`
+    if (end.includes("K")) return `${num}K`
+    if (end.includes("+")) return `+${num}`
+    if (end.includes("%")) return `${num}%`
+    return num.toString()
+  }
+
+  return formatNumber(count)
+}
 
 export default function Home() {
   const [activeService, setActiveService] = useState("salesforce")
@@ -152,8 +195,6 @@ export default function Home() {
             animation: "moveSun 5s ease infinite alternate",
           }}
         >
-
-
           <div className="container relative z-10 text-center">
             <p
               className="text-orange-500 font-medium mb-6"
@@ -190,23 +231,33 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600/30 via-orange-500/30 to-orange-600/30 blur-3xl" />
                 <div className="relative grid grid-cols-2 md:grid-cols-5 py-8 rounded-2xl backdrop-blur-sm bg-white/5">
                   <div className="text-center border-r border-gray-100/30 px-4">
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">160k</div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                      <AnimatedCounter end="160k" />
+                    </div>
                     <p className="text-sm text-gray-300">hours delivered on the last year</p>
                   </div>
                   <div className="text-center border-r border-gray-100/30 px-4">
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">21,5K</div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                      <AnimatedCounter end="21,5K" />
+                    </div>
                     <p className="text-sm text-gray-300">active users with access to our apps</p>
                   </div>
                   <div className="text-center border-r border-gray-100/30 px-4">
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">+80</div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                      <AnimatedCounter end="+80" />
+                    </div>
                     <p className="text-sm text-gray-300">team members dedicated to client projects worldwide</p>
                   </div>
                   <div className="text-center border-r border-gray-100/30 px-4">
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">98%</div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                      <AnimatedCounter end="98%" />
+                    </div>
                     <p className="text-sm text-gray-300">client retention rate</p>
                   </div>
                   <div className="text-center px-4">
-                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">10%</div>
+                    <div className="text-3xl md:text-4xl font-bold text-white mb-2">
+                      <AnimatedCounter end="10%" />
+                    </div>
                     <p className="text-sm text-gray-300">Employee turnover below</p>
                   </div>
                 </div>
@@ -471,33 +522,48 @@ export default function Home() {
         <section className="py-12 overflow-hidden bg-zinc-900">
           <h2 className="text-4xl md:text-5xl text-white text-center mb-12">Technology</h2>
 
-          {/* Technology Logos Marquee */}
+          {/* Technology Logos */}
           <div className="relative mb-4">
-            <div className="marquee-container">
-              <div className="marquee">
-                {[...Array(8)].map((_, setIndex) => (
-                  <div key={`set-${setIndex}`} className="flex gap-4">
-                    {[
-                      { src: "/salesforce.png", alt: "Salesforce" },
-                      { src: "/azure.png", alt: "Microsoft Azure" },
-                      { src: "/openai.png", alt: "OpenAI" },
-                      { src: "/aws.png", alt: "AWS" },
-                    ].map((logo, i) => (
-                      <div
-                        key={`logo-${setIndex}-${i}`}
-                        className="flex-shrink-0 flex items-center justify-center bg-zinc-800/50 rounded-lg w-[120px] h-[60px] px-4"
-                      >
-                        <Image
-                          src={logo.src || "/placeholder.svg"}
-                          alt={logo.alt}
-                          width={100}
-                          height={40}
-                          className="w-auto h-8 object-contain"
-                        />
-                      </div>
-                    ))}
+            <div>
+              <div>
+                <div className="flex gap-4 justify-center">
+                  <div className="flex-shrink-0 flex items-center justify-center bg-zinc-800/50 rounded-lg w-[140px] h-[80px] px-4">
+                    <Image
+                      src={"/salesforce.png"}
+                      alt={"Salesforce"}
+                      width={120}
+                      height={60}
+                      className="w-auto h-8 object-contain"
+                    />
                   </div>
-                ))}
+                  <div className="flex-shrink-0 flex items-center justify-center bg-zinc-800/50 rounded-lg w-[140px] h-[80px] px-4">
+                    <Image
+                      src={"/azure.png"}
+                      alt={"Azure"}
+                      width={120}
+                      height={60}
+                      className="w-auto h-8 object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 flex items-center justify-center bg-zinc-800/50 rounded-lg w-[140px] h-[80px] px-4">
+                    <Image
+                      src={"/openai.png"}
+                      alt={"Open AI"}
+                      width={120}
+                      height={60}
+                      className="w-auto h-8 object-contain"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 flex items-center justify-center bg-zinc-800/50 rounded-lg w-[140px] h-[80px] px-4">
+                    <Image
+                      src={"/aws.png"}
+                      alt={"AWS"}
+                      width={120}
+                      height={60}
+                      className="w-auto h-8 object-contain"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -643,7 +709,7 @@ export default function Home() {
           <div
             className="absolute inset-0 opacity-20"
             style={{
-              backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/clients-bg-7xNLxDolC0ps8b2jttAZtOem9i5fLr.svg')`,
+              backgroundImage: "url('/testimonials-bg.svg')",
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
@@ -683,6 +749,13 @@ export default function Home() {
                   <p className="font-semibold text-zinc-900">Vinay Gidwaney</p>
                   <p className="text-zinc-500">Entrepreneur and advisor</p>
                 </div>
+                <div className="flex justify-center mt-8">
+                  <Image
+                    src="/onedigital.webp"
+                    width={150}
+                    height={64}
+                  />
+                </div>
               </div>
 
               {/* Testimonial 2 */}
@@ -708,6 +781,13 @@ export default function Home() {
                   <p className="font-semibold text-zinc-900">Poonam Kalinani</p>
                   <p className="text-zinc-500">Chief Product Officer</p>
                 </div>
+                <div className="flex justify-center mt-8">
+                  <Image
+                    src="/onedigital.webp"
+                    width={150}
+                    height={64}
+                  />
+                </div>
               </div>
 
               {/* Testimonial 3 */}
@@ -732,6 +812,13 @@ export default function Home() {
                 <div className="text-center">
                   <p className="font-semibold text-zinc-900">Veer Gidwaney</p>
                   <p className="text-zinc-500">CEO</p>
+                </div>
+                <div className="flex justify-center mt-8">
+                  <Image
+                    src="/onedigital.webp"
+                    width={150}
+                    height={64}
+                  />
                 </div>
               </div>
             </div>
