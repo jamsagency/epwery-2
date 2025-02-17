@@ -23,6 +23,27 @@ export default function Home() {
     setIsMounted(true)
   }, [])
 
+  useEffect(() => {
+    const style = document.createElement("style")
+    style.textContent = `
+      @keyframes moveSun {
+        0% {
+          background-size: 100% 150%;
+        }
+        50% {
+          background-size: 100% 120%;
+        }
+        100% {
+          background-size: 100% 100%;
+        }
+      }
+    `
+    document.head.append(style)
+    return () => {
+      document.head.removeChild(style)
+    }
+  }, [])
+
   const servicesRef = useRef<HTMLDivElement>(null)
   const aboutUsRef = useRef<HTMLDivElement>(null)
   const clientsRef = useRef<HTMLDivElement>(null)
@@ -124,11 +145,14 @@ export default function Home() {
         <section
           className="relative pt-32 pb-24 overflow-hidden"
           style={{
-            backgroundImage: "radial-gradient(circle at 50% 100%, #ffb900, #f15c05 24%, #1d1d1d 47%)",
-            color: "transparent",
+            position: "relative",
+            overflow: "hidden",
+            backgroundImage: "radial-gradient(circle at 50% 100%, #ffb900, #f15c05 24%, #1d1d1d 80%)",
+            backgroundSize: "100% 150%",
+            animation: "moveSun 5s ease infinite alternate",
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-orange-600/20 via-transparent to-transparent opacity-40" />
+
 
           <div className="container relative z-10 text-center">
             <p
@@ -160,28 +184,28 @@ export default function Home() {
             </Button>
 
             <div className="mt-16">
-              <h2 className="text-2xl md:text-3xl text-white mb-4">Our numbers don't lie</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Our numbers don't lie</h2>
 
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600/30 via-orange-500/30 to-orange-600/30 blur-3xl" />
-                <div className="relative grid grid-cols-2 md:grid-cols-5 gap-8 p-8 rounded-2xl backdrop-blur-sm bg-white/5">
-                  <div className="text-center">
+                <div className="relative grid grid-cols-2 md:grid-cols-5 py-8 rounded-2xl backdrop-blur-sm bg-white/5">
+                  <div className="text-center border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">160k</div>
                     <p className="text-sm text-gray-300">hours delivered on the last year</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">21,5K</div>
                     <p className="text-sm text-gray-300">active users with access to our apps</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">+80</div>
                     <p className="text-sm text-gray-300">team members dedicated to client projects worldwide</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">98%</div>
                     <p className="text-sm text-gray-300">client retention rate</p>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">10%</div>
                     <p className="text-sm text-gray-300">Employee turnover below</p>
                   </div>
