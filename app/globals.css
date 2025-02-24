@@ -46,3 +46,50 @@
 
 /* Removed redundant and conflicting styles */
 
+/*hides arrow on services*/
+@media(min-width: 1024px) {
+#services button svg {
+  display: none;
+}
+}
+
+.accordion-content-box {
+  border-radius: 12px;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #F15C05;
+}
+
+@media(max-width: 1200px) {
+  .accordion-ai, .accordion-dev {
+    left: 0px;
+  }
+  .accordion-team {
+    right: 140px;
+  }
+  .accordion-salesforce {
+    right: 40px;
+    top: 28.5em;
+  }
+}
+
+.topbar {
+  background: rgba(0.0.0.0.1);
+}
+
+.footer-logo {
+  height: auto;
+}
+
+@media(max-width: 768px) {
+  footer > div {
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .footer-nav {
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 12px;
+  }
+}

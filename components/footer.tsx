@@ -50,11 +50,11 @@ export default function Footer() {
             alt="EPWERY"
             width={136}
             height={33}
-            className="h-[33px] w-[136px]"
+            className="h-[33px] w-[136px] footer-logo"
           />
         </div>
 
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-8 footer-nav">
                   <a href="https://www.linkedin.com/company/epwery/" target="_blank" className="text-white hover:text-orange-500 transition">
                     <svg width="25" height="auto" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path

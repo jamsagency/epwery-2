@@ -229,26 +229,26 @@ export default function Home() {
 
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600/30 via-orange-500/30 to-orange-600/30 blur-3xl" />
-                <div className="relative grid grid-cols-2 md:grid-cols-5 py-8 rounded-2xl backdrop-blur-sm bg-white/5">
-                  <div className="text-center border-r border-gray-100/30 px-4">
+                <div className="relative gap-4 md:gap-0 grid grid-cols-2 md:grid-cols-5 py-8 rounded-2xl backdrop-blur-sm bg-white/5">
+                  <div className="text-center md:border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                       <AnimatedCounter end="160k" />
                     </div>
                     <p className="text-sm text-gray-300">hours delivered on the last year</p>
                   </div>
-                  <div className="text-center border-r border-gray-100/30 px-4">
+                  <div className="text-center md:border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                       <AnimatedCounter end="21,5K" />
                     </div>
                     <p className="text-sm text-gray-300">active users with access to our apps</p>
                   </div>
-                  <div className="text-center border-r border-gray-100/30 px-4">
+                  <div className="text-center md:border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
-                      <AnimatedCounter end="+80" />
+                      <AnimatedCounter end="100+" />
                     </div>
                     <p className="text-sm text-gray-300">team members dedicated to client projects worldwide</p>
                   </div>
-                  <div className="text-center border-r border-gray-100/30 px-4">
+                  <div className="text-center md:border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                       <AnimatedCounter end="98%" />
                     </div>
@@ -267,9 +267,9 @@ export default function Home() {
         </section>
 
         {/* Services Section */}
-        <section ref={servicesRef} id="services" className="pt-24 pb-48">
+        <section ref={servicesRef} id="services" className="pt-24 pb-56">
           <div className="container">
-            <div className="max-w-4xl mb-16">
+            <div className="max-w-4xl mb-4">
               <p
                 className="text-orange-500 text-lg mb-6 font-semibold"
                 style={{
@@ -296,21 +296,22 @@ export default function Home() {
             {/* Desktop Layout (>992px) */}
             <div className="hidden lg:block relative h-[600px]">
               {/* Orange ISO shape */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-services-iso-eu8ThStbSnrE6RdJmVG5cAyMZh5aAj.svg"
                   alt=""
-                  width={450}
-                  height={450}
+                  width={650}
+                  height={650}
+                  className="orange-iso-shape"
                 />
               </div>
 
               {/* AI & Machine Learning */}
-              <div className="absolute left-0 top-32 [&[data-state=open]]:z-30">
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[200px]">
+              <div className="absolute left-4 top-28 [&[data-state=open]]:z-30 accordion-ai">
+                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
                   <AccordionItem value="custom" className="border-none">
                     <AccordionTrigger
-                      className="px-4 py-3 text-white hover:no-underline font-bold"
+                      className="px-4 py-3 text-white text-center hover:no-underline font-bold justify-center"
                       style={{
                         backgroundImage:
                           "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
@@ -319,7 +320,7 @@ export default function Home() {
                     >
                       AI & Machine Learning
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text center accordion-content-box">
                       {services.find((s) => s.id === "custom")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -329,23 +330,23 @@ export default function Home() {
                   alt=""
                   width={203}
                   height={42}
-                  className="absolute left-[100px] top-[85px]"
+                  className="absolute left-[125px] top-[60px]"
                 />
               </div>
 
               {/* Team Building */}
-              <div className="absolute right-32 top-[230px] [&[data-state=open]]:z-30">
+              <div className="absolute right-[15em] top-[230px] [&[data-state=open]]:z-30 accordion-team">
                 <Image
                   src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-ouzT5fArd7D500Tlt2kVkyoJpFTFIZ.svg"
                   alt=""
                   width={161}
                   height={45}
-                  className="absolute right-[300px] top-[20px]"
+                  className="absolute right-[310px] top-[20px]"
                 />
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[280px]">
+                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
                   <AccordionItem value="dedicated" className="border-none">
                     <AccordionTrigger
-                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline"
+                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center"
                       style={{
                         backgroundImage:
                           "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
@@ -354,7 +355,7 @@ export default function Home() {
                     >
                       Team Building
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
                       {services.find((s) => s.id === "dedicated")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -362,11 +363,11 @@ export default function Home() {
               </div>
 
               {/* Full Stack Web & Mobile Development */}
-              <div className="absolute left-12 top-96 [&[data-state=open]]:z-30">
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[200px]">
+              <div className="absolute left-[2em] top-[27em] [&[data-state=open]]:z-30 accordion-dev">
+                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
                   <AccordionItem value="ia" className="border-none">
                     <AccordionTrigger
-                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline"
+                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center"
                       style={{
                         backgroundImage:
                           "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
@@ -375,7 +376,7 @@ export default function Home() {
                     >
                       Full Stack Web & Mobile Development
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
                       {services.find((s) => s.id === "ia")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -385,23 +386,23 @@ export default function Home() {
                   alt=""
                   width={203}
                   height={42}
-                  className="absolute left-[100px] top-[-55px]"
+                  className="absolute left-[110px] top-[-55px]"
                 />
               </div>
 
               {/* Salesforce & Cloud Architecture */}
-              <div className="absolute right-0 top-96 [&[data-state=open]]:z-30">
+              <div className="absolute right-[9em] top-[31em] [&[data-state=open]]:z-30 accordion-salesforce">
                 <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-long-RI97s5sBlCpI2tEslro0ABnLeS6Ea5.svg"
+                  src="/home-arrow-right-bottom.svg"
                   alt=""
                   width={236}
                   height={58}
-                  className="absolute right-[300px] top-[32px]"
+                  className="absolute right-[325px] top-[-26px]"
                 />
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[280px]">
+                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[320px]">
                   <AccordionItem value="salesforce" className="border-none">
                     <AccordionTrigger
-                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline"
+                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center"
                       style={{
                         backgroundImage:
                           "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 119%)",
@@ -410,7 +411,7 @@ export default function Home() {
                     >
                       Salesforce & Cloud Architecture
                     </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
+                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
                       {services.find((s) => s.id === "salesforce")?.content}
                     </AccordionContent>
                   </AccordionItem>
@@ -526,7 +527,7 @@ export default function Home() {
           <div className="relative mb-4">
             <div>
               <div>
-                <div className="flex gap-4 justify-center">
+                <div className="flex flex-wrap gap-4 justify-center">
                   <div className="flex-shrink-0 flex items-center justify-center bg-zinc-800/50 rounded-lg w-[140px] h-[80px] px-4">
                     <Image
                       src={"/salesforce.png"}
@@ -732,7 +733,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
                       src="https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg"
-                      alt="John Smith"
+                      alt="Vinay Gidwaney"
                       width={64}
                       height={64}
                       className="w-full h-full object-cover"
@@ -764,7 +765,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
                       src="https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE"
-                      alt="Sarah Chen"
+                      alt="Poonam Kalinani"
                       width={64}
                       height={64}
                       className="w-full h-full object-cover"
@@ -796,7 +797,7 @@ export default function Home() {
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
                       src="https://media.licdn.com/dms/image/v2/C5603AQF-13tyiwjybQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1657300368033?e=1744848000&v=beta&t=jIovGveIgqDOC5nXUK1LXrSzcNoDnFr4FLAv02Zj7Ng"
-                      alt="Michael Rodriguez"
+                      alt="Veer Gidwaney"
                       width={64}
                       height={64}
                       className="w-full h-full object-cover"

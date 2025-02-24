@@ -42,7 +42,7 @@ export default function Navbar() {
   }, [])
 
   return (
-    <header className="fixed top-0 w-full z-50 backdrop-blur-sm">
+    <header className="fixed top-0 w-full z-50 backdrop-blur-xl topbar">
       <div className="container flex items-center justify-between py-4">
         <Link href="/" className="flex items-center">
           <Image
