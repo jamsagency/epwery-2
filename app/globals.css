@@ -74,7 +74,7 @@
 }
 
 .topbar {
-  background: rgba(0.0.0.0.1);
+  background: rgba(0,0,0,0.1);
 }
 
 .footer-logo {
@@ -92,4 +92,16 @@
     flex-direction: column;
     gap: 12px;
   }
+}
+
+body {
+  background: #000;
+}
+
+.testimonial-box {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 400px;
+  justify-content: center;
+  align-items: stretch;
 }

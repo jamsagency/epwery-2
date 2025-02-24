@@ -726,9 +726,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
               {/* Testimonial 1 */}
-              <div className="bg-white rounded-3xl p-8 pt-14 relative">
+              <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box">
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
@@ -740,17 +740,19 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <blockquote className="text-center mb-6">
-                  <p className="text-zinc-600 leading-relaxed">
-                    "Epwery helped us get a world class software team up and running in record time. The team is highly
-                    skilled and versatile and has become a great extension to our onsite full time employees."
-                  </p>
-                </blockquote>
-                <div className="text-center">
-                  <p className="font-semibold text-zinc-900">Vinay Gidwaney</p>
-                  <p className="text-zinc-500">Entrepreneur and advisor</p>
+                <div>
+                  <blockquote className="text-center mb-2">
+                    <p className="text-zinc-600 leading-relaxed">
+                      "Epwery helped us get a world class software team up and running in record time. The team is highly
+                      skilled and versatile and has become a great extension to our onsite full time employees."
+                    </p>
+                  </blockquote>
+                  <div className="text-center">
+                    <p className="font-semibold text-zinc-900">Vinay Gidwaney</p>
+                    <p className="text-zinc-500">Entrepreneur and advisor</p>
+                  </div>
                 </div>
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-center items-center">
                   <Image
                     src="/onedigital.webp"
                     width={150}
@@ -760,7 +762,7 @@ export default function Home() {
               </div>
 
               {/* Testimonial 2 */}
-              <div className="bg-white rounded-3xl p-8 pt-14 relative">
+              <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box">
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
@@ -772,27 +774,29 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <blockquote className="text-center mb-6">
-                  <p className="text-zinc-600 leading-relaxed">
-                    "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling
-                    products. Their leadership and practical architecture make them invaluable for product businesses."
-                  </p>
-                </blockquote>
-                <div className="text-center">
-                  <p className="font-semibold text-zinc-900">Poonam Kalinani</p>
-                  <p className="text-zinc-500">Chief Product Officer</p>
+                <div>
+                  <blockquote className="text-center mb-4">
+                    <p className="text-zinc-600 leading-relaxed">
+                      "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling
+                      products. Their leadership and practical architecture make them invaluable for product businesses."
+                    </p>
+                  </blockquote>
+                  <div className="text-center">
+                    <p className="font-semibold text-zinc-900">Poonam Kalinani</p>
+                    <p className="text-zinc-500">Chief Product Officer</p>
+                  </div>
                 </div>
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-center">
                   <Image
-                    src="/onedigital.webp"
-                    width={150}
+                    src="/2u-logo.svg"
+                    width={64}
                     height={64}
                   />
                 </div>
               </div>
 
               {/* Testimonial 3 */}
-              <div className="bg-white rounded-3xl p-8 pt-14 relative">
+              <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box">
                 <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                   <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                     <Image
@@ -804,20 +808,22 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                <blockquote className="text-center mb-6">
-                  <p className="text-zinc-600 leading-relaxed">
-                    "Our exceptional EPWERY team is fully dedicated to Ansel’s success, embracing our mission and values
-                    while driving rapid innovation from ideation to market—a true competitive edge."
-                  </p>
-                </blockquote>
-                <div className="text-center">
-                  <p className="font-semibold text-zinc-900">Veer Gidwaney</p>
-                  <p className="text-zinc-500">CEO</p>
+                <div>
+                  <blockquote className="text-center mb-4">
+                    <p className="text-zinc-600 leading-relaxed">
+                      "Our exceptional EPWERY team is fully dedicated to Ansel’s success, embracing our mission and values
+                      while driving rapid innovation from ideation to market—a true competitive edge."
+                    </p>
+                  </blockquote>
+                  <div className="text-center">
+                    <p className="font-semibold text-zinc-900">Veer Gidwaney</p>
+                    <p className="text-zinc-500">CEO</p>
+                  </div>
                 </div>
-                <div className="flex justify-center mt-8">
+                <div className="flex justify-center">
                   <Image
-                    src="/onedigital.webp"
-                    width={150}
+                    src="/ansel-logo.svg"
+                    width={100}
                     height={64}
                   />
                 </div>
