@@ -105,3 +105,7 @@ body {
   justify-content: center;
   align-items: stretch;
 }
+
+.testimonial-carousel > div {
+  overflow: visible !important;
+}

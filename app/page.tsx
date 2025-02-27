@@ -10,6 +10,14 @@ import { useCallback } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import dynamic from "next/dynamic"
 import { useEffect as useEffect2, useState as useState2, useRef as useRef2 } from "react"
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+import { Download } from "lucide-react"
 
 const CalendlyWidget = dynamic(() => import("@/components/CalendlyWidget"), { ssr: false })
 
@@ -266,181 +274,221 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Services Section */}
-        <section ref={servicesRef} id="services" className="pt-24 pb-56">
-          <div className="container">
-            <div className="max-w-4xl mb-4">
-              <p
-                className="text-orange-500 text-xl mb-6 font-semibold"
-                style={{
-                  backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
-                  WebkitBackgroundClip: "text",
-                  backgroundClip: "text",
-                  color: "transparent",
-                }}
-              >
-                We don't just offer services; we deliver honest, high-quality solutions.
-              </p>
-              <h2 className="font-bold text-4xl md:text-5xl text-white mb-8">
-                Your success <span className="font-normal italic">is our priority</span>, backed by an{" "}
-                <span className="font-normal italic">honest and professional approach.</span>
-              </h2>
-              <p className="text-gray-300 text-lg leading-relaxed">
-                At Epwery, we understand that every project has unique needs. That's why, beyond the range of services
-                we provide, our philosophy is clear: always recommend the solution that truly benefits your business. We
-                are committed to working with the highest quality standards, keeping your interests at the heart of
-                everything we do. Because when you grow, so do we.
-              </p>
-            </div>
+      {/* Services Section */}
+            <section ref={servicesRef} id="services" className="pt-24 pb-56">
+              <div className="container">
+                <div className="max-w-4xl mb-4">
+                  <p
+                    className="text-orange-500 text-xl mb-6 font-semibold"
+                    style={{
+                      backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      color: "transparent",
+                    }}
+                  >
+                    We don't just offer services; we deliver honest, high-quality solutions.
+                  </p>
+                  <h2 className="font-bold text-4xl md:text-5xl text-white mb-8">
+                    Your success <span className="font-normal italic">is our priority</span>, backed by an{" "}
+                    <span className="font-normal italic">honest and professional approach.</span>
+                  </h2>
+                  <p className="text-gray-300 text-lg leading-relaxed">
+                    At Epwery, we understand that every project has unique needs. That's why, beyond the range of services
+                    we provide, our philosophy is clear: always recommend the solution that truly benefits your business. We
+                    are committed to working with the highest quality standards, keeping your interests at the heart of
+                    everything we do. Because when you grow, so do we.
+                  </p>
+                </div>
 
-            {/* Desktop Layout (>992px) */}
-            <div className="hidden lg:block relative h-[600px]">
-              {/* Orange ISO shape */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-services-iso-eu8ThStbSnrE6RdJmVG5cAyMZh5aAj.svg"
-                  alt=""
-                  width={650}
-                  height={650}
-                  className="orange-iso-shape"
-                />
+                {/* Desktop Layout (>992px) */}
+                <div className="hidden lg:block relative h-[600px]">
+                  {/* Orange ISO shape */}
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
+                    <Image
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-services-iso-eu8ThStbSnrE6RdJmVG5cAyMZh5aAj.svg"
+                      alt=""
+                      width={650}
+                      height={650}
+                      className="orange-iso-shape"
+                    />
+                  </div>
+
+                  {/* AI & Machine Learning */}
+                  <div className="absolute left-4 top-28 [&[data-state=open]]:z-30 accordion-ai">
+                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
+                      <AccordionItem value="custom" className="border-none">
+                        <AccordionTrigger
+                          className="px-4 py-3 text-white text-center hover:no-underline font-bold justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
+                          style={{
+                            backgroundImage:
+                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          AI & Machine Learning
+                        </AccordionTrigger>
+                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                          {services.find((s) => s.id === "custom")?.content}
+                          <div className="mt-4">
+                            <a
+                              href="#"
+                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                            >
+                              Learn more <Download className="h-4 w-4" />
+                            </a>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                    <Image
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-top-Je3anW1VK3l0AzDLXMxjkNzrG0uP17.svg"
+                      alt=""
+                      width={203}
+                      height={42}
+                      className="absolute left-[125px] top-[60px]"
+                    />
+                  </div>
+
+                  {/* Team Building */}
+                  <div className="absolute right-[15em] top-[230px] [&[data-state=open]]:z-30 accordion-team">
+                    <Image
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-ouzT5fArd7D500Tlt2kVkyoJpFTFIZ.svg"
+                      alt=""
+                      width={161}
+                      height={45}
+                      className="absolute right-[310px] top-[20px]"
+                    />
+                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
+                      <AccordionItem value="dedicated" className="border-none">
+                        <AccordionTrigger
+                          className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
+                          style={{
+                            backgroundImage:
+                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          Team Building
+                        </AccordionTrigger>
+                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                          {services.find((s) => s.id === "dedicated")?.content}
+                          <div className="mt-4">
+                            <a
+                              href="#"
+                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                            >
+                              Learn more <Download className="h-4 w-4" />
+                            </a>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+
+                  {/* Full Stack Web & Mobile Development */}
+                  <div className="absolute left-[2em] top-[27em] [&[data-state=open]]:z-30 accordion-dev">
+                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
+                      <AccordionItem value="ia" className="border-none">
+                        <AccordionTrigger
+                          className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
+                          style={{
+                            backgroundImage:
+                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          Full Stack Web & Mobile Development
+                        </AccordionTrigger>
+                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                          {services.find((s) => s.id === "ia")?.content}
+                          <div className="mt-4">
+                            <a
+                              href="#"
+                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                            >
+                              Learn more <Download className="h-4 w-4" />
+                            </a>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                    <Image
+                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-bottom-x2yIUFOLljpCxSX3TjHlXdhBA0ImlB.svg"
+                      alt=""
+                      width={203}
+                      height={42}
+                      className="absolute left-[110px] top-[-55px]"
+                    />
+                  </div>
+
+                  {/* Salesforce & Cloud Architecture */}
+                  <div className="absolute right-[9em] top-[31em] [&[data-state=open]]:z-30 accordion-salesforce">
+                    <Image
+                      src="/home-arrow-right-bottom.svg"
+                      alt=""
+                      width={236}
+                      height={58}
+                      className="absolute right-[325px] top-[-26px]"
+                    />
+                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[320px]">
+                      <AccordionItem value="salesforce" className="border-none">
+                        <AccordionTrigger
+                          className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
+                          style={{
+                            backgroundImage:
+                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 119%)",
+                            borderRadius: "8px",
+                          }}
+                        >
+                          Salesforce & Cloud Architecture
+                        </AccordionTrigger>
+                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                          {services.find((s) => s.id === "salesforce")?.content}
+                          <div className="mt-4">
+                            <a
+                              href="#"
+                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                            >
+                              Learn more <Download className="h-4 w-4" />
+                            </a>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    </Accordion>
+                  </div>
+                </div>
+
+                {/* Mobile Layout (≤992px) */}
+                <div className="lg:hidden">
+                  <Accordion
+                    type="single"
+                    value={activeService}
+                    onValueChange={setActiveService}
+                    className="w-full space-y-4"
+                  >
+                    {services.map((service) => (
+                      <AccordionItem key={service.id} value={service.id} className="border-none">
+                        <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800 transition-all duration-300">
+                          {service.title}
+                        </AccordionTrigger>
+                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
+                          {service.content}
+                          <div className="mt-4">
+                            <a
+                              href="#"
+                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                            >
+                              Learn more <Download className="h-4 w-4" />
+                            </a>
+                          </div>
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
               </div>
-
-              {/* AI & Machine Learning */}
-              <div className="absolute left-4 top-28 [&[data-state=open]]:z-30 accordion-ai">
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
-                  <AccordionItem value="custom" className="border-none">
-                    <AccordionTrigger
-                      className="px-4 py-3 text-white text-center hover:no-underline font-bold justify-center"
-                      style={{
-                        backgroundImage:
-                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
-                        borderRadius: "8px",
-                      }}
-                    >
-                      AI & Machine Learning
-                    </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text center accordion-content-box">
-                      {services.find((s) => s.id === "custom")?.content}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-top-Je3anW1VK3l0AzDLXMxjkNzrG0uP17.svg"
-                  alt=""
-                  width={203}
-                  height={42}
-                  className="absolute left-[125px] top-[60px]"
-                />
-              </div>
-
-              {/* Team Building */}
-              <div className="absolute right-[15em] top-[230px] [&[data-state=open]]:z-30 accordion-team">
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-ouzT5fArd7D500Tlt2kVkyoJpFTFIZ.svg"
-                  alt=""
-                  width={161}
-                  height={45}
-                  className="absolute right-[310px] top-[20px]"
-                />
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
-                  <AccordionItem value="dedicated" className="border-none">
-                    <AccordionTrigger
-                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center"
-                      style={{
-                        backgroundImage:
-                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
-                        borderRadius: "8px",
-                      }}
-                    >
-                      Team Building
-                    </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
-                      {services.find((s) => s.id === "dedicated")?.content}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-
-              {/* Full Stack Web & Mobile Development */}
-              <div className="absolute left-[2em] top-[27em] [&[data-state=open]]:z-30 accordion-dev">
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
-                  <AccordionItem value="ia" className="border-none">
-                    <AccordionTrigger
-                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center"
-                      style={{
-                        backgroundImage:
-                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
-                        borderRadius: "8px",
-                      }}
-                    >
-                      Full Stack Web & Mobile Development
-                    </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
-                      {services.find((s) => s.id === "ia")?.content}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-                <Image
-                  src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-bottom-x2yIUFOLljpCxSX3TjHlXdhBA0ImlB.svg"
-                  alt=""
-                  width={203}
-                  height={42}
-                  className="absolute left-[110px] top-[-55px]"
-                />
-              </div>
-
-              {/* Salesforce & Cloud Architecture */}
-              <div className="absolute right-[9em] top-[31em] [&[data-state=open]]:z-30 accordion-salesforce">
-                <Image
-                  src="/home-arrow-right-bottom.svg"
-                  alt=""
-                  width={236}
-                  height={58}
-                  className="absolute right-[325px] top-[-26px]"
-                />
-                <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[320px]">
-                  <AccordionItem value="salesforce" className="border-none">
-                    <AccordionTrigger
-                      className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center"
-                      style={{
-                        backgroundImage:
-                          "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 119%)",
-                        borderRadius: "8px",
-                      }}
-                    >
-                      Salesforce & Cloud Architecture
-                    </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
-                      {services.find((s) => s.id === "salesforce")?.content}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </div>
-            </div>
-
-            {/* Mobile Layout (≤992px) */}
-            <div className="lg:hidden">
-              <Accordion
-                type="single"
-                value={activeService}
-                onValueChange={setActiveService}
-                className="w-full space-y-4"
-              >
-                {services.map((service) => (
-                  <AccordionItem key={service.id} value={service.id} className="border-none">
-                    <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800">
-                      {service.title}
-                    </AccordionTrigger>
-                    <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
-                      {service.content}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </section>
+            </section>
 
         {/* Engineers Section */}
         <section className="py-24 bg-white">
@@ -726,109 +774,98 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-              {/* Testimonial 1 */}
-              <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box">
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
-                    <Image
-                      src="https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg"
-                      alt="Vinay Gidwaney"
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <blockquote className="text-center mb-2">
-                    <p className="text-zinc-600 leading-relaxed">
-                      "Epwery helped us get a world class software team up and running in record time. The team is highly
-                      skilled and versatile and has become a great extension to our onsite full time employees."
-                    </p>
-                  </blockquote>
-                  <div className="text-center">
-                    <p className="font-semibold text-zinc-900">Vinay Gidwaney</p>
-                    <p className="text-zinc-500">Entrepreneur and advisor</p>
-                  </div>
-                </div>
-                <div className="flex justify-center items-center">
-                  <Image
-                    src="/onedigital.webp"
-                    width={150}
-                    height={64}
-                  />
-                </div>
+            <Carousel
+              opts={{
+                align: "start",
+                loop: true,
+              }}
+              className="w-full testimonial-carousel"
+            >
+              <CarouselContent className="-ml-2 md:-ml-4">
+                {[
+                  {
+                    name: "Vinay Gidwaney",
+                    role: "Entrepreneur and advisor",
+                    image: "https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg",
+                    quote: "Epwery helped us get a world class software team up and running in record time. The team is highly skilled and versatile and has become a great extension to our onsite full time employees.",
+                    logo: "/onedigital.webp",
+                    logoWidth: 150
+                  },
+                  {
+                    name: "Poonam Kalinani",
+                    role: "Chief Product Officer",
+                    image: "https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE",
+                    quote: "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses.",
+                    logo: "/2u-logo.svg",
+                    logoWidth: 64
+                  },
+                  {
+                    name: "Veer Gidwaney",
+                    role: "CEO",
+                    image: "https://media.licdn.com/dms/image/v2/C5603AQF-13tyiwjybQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1657300368033?e=1744848000&v=beta&t=jIovGveIgqDOC5nXUK1LXrSzcNoDnFr4FLAv02Zj7Ng",
+                    quote: "Our exceptional EPWERY team is fully dedicated to Ansel's success, embracing our mission and values while driving rapid innovation from ideation to market—a true competitive edge.",
+                    logo: "/ansel-logo.svg",
+                    logoWidth: 100
+                  },
+                  // Duplicated testimonials to reach 5
+                  {
+                    name: "Vinay Gidwaney",
+                    role: "Entrepreneur and advisor",
+                    image: "https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg",
+                    quote: "Epwery helped us get a world class software team up and running in record time. The team is highly skilled and versatile and has become a great extension to our onsite full time employees.",
+                    logo: "/onedigital.webp",
+                    logoWidth: 150
+                  },
+                  {
+                    name: "Poonam Kalinani",
+                    role: "Chief Product Officer",
+                    image: "https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE",
+                    quote: "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses.",
+                    logo: "/2u-logo.svg",
+                    logoWidth: 64
+                  }
+                ].map((testimonial, index) => (
+                  <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3">
+                    <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box h-full">
+                      <div className="absolute -top-8 left-1/2 -translate-x-1/2">
+                        <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
+                          <Image
+                            src={testimonial.image || "/placeholder.svg"}
+                            alt={testimonial.name}
+                            width={64}
+                            height={64}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <blockquote className="text-center mb-2">
+                          <p className="text-zinc-600 leading-relaxed">
+                            {testimonial.quote}
+                          </p>
+                        </blockquote>
+                        <div className="text-center">
+                          <p className="font-semibold text-zinc-900">{testimonial.name}</p>
+                          <p className="text-zinc-500">{testimonial.role}</p>
+                        </div>
+                      </div>
+                      <div className="flex justify-center items-center mt-4">
+                        <Image
+                          src={testimonial.logo || "/placeholder.svg"}
+                          width={testimonial.logoWidth}
+                          height={64}
+                          alt={`${testimonial.name}'s company logo`}
+                        />
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex justify-center gap-4 mt-8 text-white">
+                <CarouselPrevious className="relative static" />
+                <CarouselNext className="relative static" />
               </div>
-
-              {/* Testimonial 2 */}
-              <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box">
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
-                    <Image
-                      src="https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE"
-                      alt="Poonam Kalinani"
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <blockquote className="text-center mb-4">
-                    <p className="text-zinc-600 leading-relaxed">
-                      "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling
-                      products. Their leadership and practical architecture make them invaluable for product businesses."
-                    </p>
-                  </blockquote>
-                  <div className="text-center">
-                    <p className="font-semibold text-zinc-900">Poonam Kalinani</p>
-                    <p className="text-zinc-500">Chief Product Officer</p>
-                  </div>
-                </div>
-                <div className="flex justify-center">
-                  <Image
-                    src="/2u-logo.svg"
-                    width={64}
-                    height={64}
-                  />
-                </div>
-              </div>
-
-              {/* Testimonial 3 */}
-              <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box">
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2">
-                  <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
-                    <Image
-                      src="https://media.licdn.com/dms/image/v2/C5603AQF-13tyiwjybQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1657300368033?e=1744848000&v=beta&t=jIovGveIgqDOC5nXUK1LXrSzcNoDnFr4FLAv02Zj7Ng"
-                      alt="Veer Gidwaney"
-                      width={64}
-                      height={64}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
-                <div>
-                  <blockquote className="text-center mb-4">
-                    <p className="text-zinc-600 leading-relaxed">
-                      "Our exceptional EPWERY team is fully dedicated to Ansel’s success, embracing our mission and values
-                      while driving rapid innovation from ideation to market—a true competitive edge."
-                    </p>
-                  </blockquote>
-                  <div className="text-center">
-                    <p className="font-semibold text-zinc-900">Veer Gidwaney</p>
-                    <p className="text-zinc-500">CEO</p>
-                  </div>
-                </div>
-                <div className="flex justify-center">
-                  <Image
-                    src="/ansel-logo.svg"
-                    width={100}
-                    height={64}
-                  />
-                </div>
-              </div>
-            </div>
+            </Carousel>
           </div>
         </section>
 
