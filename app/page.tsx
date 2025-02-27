@@ -47,7 +47,7 @@ const AnimatedCounter = ({ end, duration = 2000 }) => {
   const formatNumber = (num) => {
     if (end.includes("k")) return `${num}k`
     if (end.includes("K")) return `${num}K`
-    if (end.includes("+")) return `+${num}`
+    if (end.includes("+")) return `${num}+`
     if (end.includes("%")) return `${num}%`
     return num.toString()
   }
@@ -229,8 +229,8 @@ export default function Home() {
 
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-orange-600/30 via-orange-500/30 to-orange-600/30 blur-3xl" />
-                <div className="relative gap-4 md:gap-0 grid grid-cols-2 md:grid-cols-5 py-8 rounded-2xl backdrop-blur-sm bg-white/5">
-                  <div className="text-center md:border-r border-gray-100/30 px-4">
+                <div className="relative gap-2 md:gap-0 grid grid-cols-2 md:grid-cols-5 py-8 rounded-2xl backdrop-blur-sm bg-white/5">
+                  <div className="text-center border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                       <AnimatedCounter end="160k" />
                     </div>
@@ -242,7 +242,7 @@ export default function Home() {
                     </div>
                     <p className="text-sm text-gray-300">active users with access to our apps</p>
                   </div>
-                  <div className="text-center md:border-r border-gray-100/30 px-4">
+                  <div className="text-center border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                       <AnimatedCounter end="100+" />
                     </div>
@@ -271,7 +271,7 @@ export default function Home() {
           <div className="container">
             <div className="max-w-4xl mb-4">
               <p
-                className="text-orange-500 text-lg mb-6 font-semibold"
+                className="text-orange-500 text-xl mb-6 font-semibold"
                 style={{
                   backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
                   WebkitBackgroundClip: "text",
@@ -442,22 +442,87 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Innovation Section */}
-        <section className="bg-[#FF4D00] py-24">
+        {/* Engineers Section */}
+        <section className="py-24 bg-white">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 items-start">
               <div className="max-w-xl">
-                <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">See Innovation in Action</h2>
+                <p
+                  className="text-lg mb-6 font-semibold"
+                  style={{
+                    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    color: "transparent",
+                  }}
+                >
+                  A Partner Who Truly Understands Technology
+                </p>
+                <h2 className="text-4xl md:text-5xl text-zinc-900 mb-8 font-bold">
+                  Engineers, <span className="font-normal italic">Not</span>
+                  <br />
+                  <span className="font-normal italic">Salespeople.</span>
+                </h2>
                 <div className="space-y-6">
-                  <p className="text-black text-lg leading-relaxed">
-                    Explore how we continuously test and evaluate emerging technologies to uncover their true potential
-                    and deliver meaningful value. In this section, you'll find examples of cutting-edge experiments and
-                    integrations that go beyond fleeting trends.
+                  <p className="text-zinc-600 text-lg leading-relaxed">
+                    At EPWERY, what sets us apart is that we're led by engineers, not salespeople. From your very first
+                    contact, you'll engage in an honest and knowledgeable conversation with our founders—seasoned
+                    technology experts who understand your challenges and can provide tailored recommendations.
                   </p>
-                  <p className="text-black text-lg leading-relaxed">
-                    For years, our commitment to identifying impactful solutions has set us apart, ensuring we stay
-                    ahead without compromising on what truly matters: innovation that makes a difference.
+                  <p className="text-zinc-600 text-lg leading-relaxed">
+                    You won't need to navigate through layers of sales representatives to get clear answers about
+                    technical or commercial aspects. We're committed to building trust from day one, encouraging you to
+                    test us out and experience the value we bring firsthand.
                   </p>
+                  <div className="pt-4">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="bg-zinc-900 text-white hover:bg-zinc-800 rounded-full px-8"
+                    >
+                      Explore now
+                    </Button>
+                  </div>
+                </div>
+              </div>
+              <div className="relative pt-8">
+                <div className="relative h-[600px]">
+                  <Image
+                    src="/message-1.svg"
+                    alt="Message 1"
+                    width={350}
+                    height={85}
+                    className={`absolute top-0 transition-opacity duration-500 ${
+                      visibleMessages.includes(1) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  <Image
+                    src="/message-2.svg"
+                    alt="Message 2"
+                    width={350}
+                    height={85}
+                    className={`absolute top-[90px] right-0 transition-opacity duration-500 ${
+                      visibleMessages.includes(2) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  <Image
+                    src="/message-3.svg"
+                    alt="Message 3"
+                    width={350}
+                    height={85}
+                    className={`absolute top-[260px] transition-opacity duration-500 ${
+                      visibleMessages.includes(3) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
+                  <Image
+                    src="/message-4.svg"
+                    alt="Message 4"
+                    width={350}
+                    height={85}
+                    className={`absolute top-[370px] right-0 transition-opacity duration-500 ${
+                      visibleMessages.includes(4) ? "opacity-100" : "opacity-0"
+                    }`}
+                  />
                 </div>
               </div>
             </div>
@@ -470,7 +535,7 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="max-w-xl">
                 <p
-                  className="text-lg mb-6 font-semibold"
+                  className="text-xl mb-6 font-semibold"
                   style={{
                     backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
                     WebkitBackgroundClip: "text",
@@ -617,87 +682,22 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Engineers Section */}
-        <section className="py-24 bg-white">
+        {/* Innovation Section */}
+        <section className="bg-[#FF4D00] py-24">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="max-w-xl">
-                <p
-                  className="text-lg mb-6 font-semibold"
-                  style={{
-                    backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                >
-                  A Partner Who Truly Understands Technology
-                </p>
-                <h2 className="text-4xl md:text-5xl text-zinc-900 mb-8 font-bold">
-                  Engineers, <span className="font-normal italic">Not</span>
-                  <br />
-                  <span className="font-normal italic">Salespeople.</span>
-                </h2>
+                <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">See Innovation in Action</h2>
                 <div className="space-y-6">
-                  <p className="text-zinc-600 text-lg leading-relaxed">
-                    At EPWERY, what sets us apart is that we're led by engineers, not salespeople. From your very first
-                    contact, you'll engage in an honest and knowledgeable conversation with our founders—seasoned
-                    technology experts who understand your challenges and can provide tailored recommendations.
+                  <p className="text-black text-lg leading-relaxed">
+                    Explore how we continuously test and evaluate emerging technologies to uncover their true potential
+                    and deliver meaningful value. In this section, you'll find examples of cutting-edge experiments and
+                    integrations that go beyond fleeting trends.
                   </p>
-                  <p className="text-zinc-600 text-lg leading-relaxed">
-                    You won't need to navigate through layers of sales representatives to get clear answers about
-                    technical or commercial aspects. We're committed to building trust from day one, encouraging you to
-                    test us out and experience the value we bring firsthand.
+                  <p className="text-black text-lg leading-relaxed">
+                    For years, our commitment to identifying impactful solutions has set us apart, ensuring we stay
+                    ahead without compromising on what truly matters: innovation that makes a difference.
                   </p>
-                  <div className="pt-4">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="bg-zinc-900 text-white hover:bg-zinc-800 rounded-full px-8"
-                    >
-                      Explore now
-                    </Button>
-                  </div>
-                </div>
-              </div>
-              <div className="relative pt-8">
-                <div className="relative h-[600px]">
-                  <Image
-                    src="/message-1.svg"
-                    alt="Message 1"
-                    width={350}
-                    height={85}
-                    className={`absolute top-0 transition-opacity duration-500 ${
-                      visibleMessages.includes(1) ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                  <Image
-                    src="/message-2.svg"
-                    alt="Message 2"
-                    width={350}
-                    height={85}
-                    className={`absolute top-[90px] right-0 transition-opacity duration-500 ${
-                      visibleMessages.includes(2) ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                  <Image
-                    src="/message-3.svg"
-                    alt="Message 3"
-                    width={350}
-                    height={85}
-                    className={`absolute top-[260px] transition-opacity duration-500 ${
-                      visibleMessages.includes(3) ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                  <Image
-                    src="/message-4.svg"
-                    alt="Message 4"
-                    width={350}
-                    height={85}
-                    className={`absolute top-[370px] right-0 transition-opacity duration-500 ${
-                      visibleMessages.includes(4) ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
                 </div>
               </div>
             </div>

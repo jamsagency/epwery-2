@@ -17,7 +17,7 @@
 .marquee {
   display: flex;
   gap: 1rem; /* Add gap between sets */
-  animation: marquee 40s linear infinite;
+  animation: marquee 10s linear infinite;
 }
 
 @keyframes marquee {
@@ -32,7 +32,7 @@
 .marquee-reverse {
   display: flex;
   gap: 1rem;
-  animation: marquee-reverse 40s linear infinite;
+  animation: marquee-reverse 15s linear infinite;
 }
 
 @keyframes marquee-reverse {
