@@ -69,6 +69,7 @@ export default function Home() {
   const router = useRouter()
   const [isMounted, setIsMounted] = useState(false)
   const [visibleMessages, setVisibleMessages] = useState<number[]>([])
+  const [expandedService, setExpandedService] = useState<string | undefined>(undefined)
 
   useEffect(() => {
     setIsMounted(true)
@@ -187,6 +188,14 @@ export default function Home() {
     },
   ]
 
+ const handleServiceToggle = (value: string) => {
+   if (value === expandedService) {
+     setExpandedService(undefined)
+   } else {
+     setExpandedService(value)
+   }
+ }
+
   return (
     <div className="min-h-screen bg-zinc-900">
       <Navbar />
@@ -274,221 +283,258 @@ export default function Home() {
           </div>
         </section>
 
-      {/* Services Section */}
-            <section ref={servicesRef} id="services" className="pt-24 pb-56">
-              <div className="container">
-                <div className="max-w-4xl mb-4">
-                  <p
-                    className="text-orange-500 text-xl mb-6 font-semibold"
-                    style={{
-                      backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
-                      WebkitBackgroundClip: "text",
-                      backgroundClip: "text",
-                      color: "transparent",
-                    }}
-                  >
-                    We don't just offer services; we deliver honest, high-quality solutions.
-                  </p>
-                  <h2 className="font-bold text-4xl md:text-5xl text-white mb-8">
-                    Your success <span className="font-normal italic">is our priority</span>, backed by an{" "}
-                    <span className="font-normal italic">honest and professional approach.</span>
-                  </h2>
-                  <p className="text-gray-300 text-lg leading-relaxed">
-                    At Epwery, we understand that every project has unique needs. That's why, beyond the range of services
-                    we provide, our philosophy is clear: always recommend the solution that truly benefits your business. We
-                    are committed to working with the highest quality standards, keeping your interests at the heart of
-                    everything we do. Because when you grow, so do we.
-                  </p>
-                </div>
+ {/* Services Section */}
+     <section ref={servicesRef} id="services" className="pt-24 pb-56">
+       <div className="container">
+         <div className="max-w-4xl mb-4">
+           <p
+             className="text-orange-500 text-xl mb-6 font-semibold"
+             style={{
+               backgroundImage: "linear-gradient(to right, #f15c05 37%, #ffb900 67%)",
+               WebkitBackgroundClip: "text",
+               backgroundClip: "text",
+               color: "transparent",
+             }}
+           >
+             We don't just offer services; we deliver honest, high-quality solutions.
+           </p>
+           <h2 className="font-bold text-4xl md:text-5xl text-white mb-8">
+             Your success <span className="font-normal italic">is our priority</span>, backed by an{" "}
+             <span className="font-normal italic">honest and professional approach.</span>
+           </h2>
+           <p className="text-gray-300 text-lg leading-relaxed">
+             At Epwery, we understand that every project has unique needs. That's why, beyond the range of services
+             we provide, our philosophy is clear: always recommend the solution that truly benefits your business. We
+             are committed to working with the highest quality standards, keeping your interests at the heart of
+             everything we do. Because when you grow, so do we.
+           </p>
+         </div>
 
-                {/* Desktop Layout (>992px) */}
-                <div className="hidden lg:block relative h-[600px]">
-                  {/* Orange ISO shape */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-services-iso-eu8ThStbSnrE6RdJmVG5cAyMZh5aAj.svg"
-                      alt=""
-                      width={650}
-                      height={650}
-                      className="orange-iso-shape"
-                    />
-                  </div>
+         {/* Desktop Layout (>992px) */}
+         <div className="hidden lg:block relative h-[600px]">
+           {/* Orange ISO shape */}
+           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none z-10">
+             <Image
+               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-services-iso-eu8ThStbSnrE6RdJmVG5cAyMZh5aAj.svg"
+               alt=""
+               width={650}
+               height={650}
+               className="orange-iso-shape"
+             />
+           </div>
 
-                  {/* AI & Machine Learning */}
-                  <div className="absolute left-4 top-28 [&[data-state=open]]:z-30 accordion-ai">
-                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
-                      <AccordionItem value="custom" className="border-none">
-                        <AccordionTrigger
-                          className="px-4 py-3 text-white text-center hover:no-underline font-bold justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
-                            borderRadius: "8px",
-                          }}
-                        >
-                          AI & Machine Learning
-                        </AccordionTrigger>
-                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
-                          {services.find((s) => s.id === "custom")?.content}
-                          <div className="mt-4">
-                            <a
-                              href="#"
-                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
-                            >
-                              Learn more <Download className="h-4 w-4" />
-                            </a>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-top-Je3anW1VK3l0AzDLXMxjkNzrG0uP17.svg"
-                      alt=""
-                      width={203}
-                      height={42}
-                      className="absolute left-[125px] top-[60px]"
-                    />
-                  </div>
+           {/* AI & Machine Learning */}
+           <div className="absolute left-4 top-28 [&[data-state=open]]:z-30 accordion-ai">
+             <Accordion
+               type="single"
+               collapsible
+               value={expandedService}
+               onValueChange={handleServiceToggle}
+               className="w-[300px]"
+             >
+               <AccordionItem value="custom" className="border-none">
+                 <AccordionTrigger
+                   className={`px-4 py-3 text-white text-center hover:no-underline font-bold justify-center transition-all duration-300 ${
+                     expandedService && expandedService !== "custom" ? "blur-[2px]" : ""
+                   }`}
+                   style={{
+                     backgroundImage:
+                       "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                     borderRadius: "8px",
+                   }}
+                 >
+                   AI & Machine Learning
+                 </AccordionTrigger>
+                 <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                   {services.find((s) => s.id === "custom")?.content}
+                   <div className="mt-4">
+                     <a
+                       href="#"
+                       className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                     >
+                       Learn more <Download className="h-4 w-4" />
+                     </a>
+                   </div>
+                 </AccordionContent>
+               </AccordionItem>
+             </Accordion>
+             <Image
+               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-top-Je3anW1VK3l0AzDLXMxjkNzrG0uP17.svg"
+               alt=""
+               width={203}
+               height={42}
+               className="absolute left-[125px] top-[60px]"
+             />
+           </div>
 
-                  {/* Team Building */}
-                  <div className="absolute right-[15em] top-[230px] [&[data-state=open]]:z-30 accordion-team">
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-ouzT5fArd7D500Tlt2kVkyoJpFTFIZ.svg"
-                      alt=""
-                      width={161}
-                      height={45}
-                      className="absolute right-[310px] top-[20px]"
-                    />
-                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
-                      <AccordionItem value="dedicated" className="border-none">
-                        <AccordionTrigger
-                          className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
-                            borderRadius: "8px",
-                          }}
-                        >
-                          Team Building
-                        </AccordionTrigger>
-                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
-                          {services.find((s) => s.id === "dedicated")?.content}
-                          <div className="mt-4">
-                            <a
-                              href="#"
-                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
-                            >
-                              Learn more <Download className="h-4 w-4" />
-                            </a>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div>
+           {/* Team Building */}
+           <div className="absolute right-[15em] top-[230px] [&[data-state=open]]:z-30 accordion-team">
+             <Image
+               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-right-top-ouzT5fArd7D500Tlt2kVkyoJpFTFIZ.svg"
+               alt=""
+               width={161}
+               height={45}
+               className="absolute right-[310px] top-[20px]"
+             />
+             <Accordion
+               type="single"
+               collapsible
+               value={expandedService}
+               onValueChange={handleServiceToggle}
+               className="w-[300px]"
+             >
+               <AccordionItem value="dedicated" className="border-none">
+                 <AccordionTrigger
+                   className={`font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 ${
+                     expandedService && expandedService !== "dedicated" ? "blur-[2px]" : ""
+                   }`}
+                   style={{
+                     backgroundImage:
+                       "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                     borderRadius: "8px",
+                   }}
+                 >
+                   Team Building
+                 </AccordionTrigger>
+                 <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                   {services.find((s) => s.id === "dedicated")?.content}
+                   <div className="mt-4">
+                     <a
+                       href="#"
+                       className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                     >
+                       Learn more <Download className="h-4 w-4" />
+                     </a>
+                   </div>
+                 </AccordionContent>
+               </AccordionItem>
+             </Accordion>
+           </div>
 
-                  {/* Full Stack Web & Mobile Development */}
-                  <div className="absolute left-[2em] top-[27em] [&[data-state=open]]:z-30 accordion-dev">
-                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[300px]">
-                      <AccordionItem value="ia" className="border-none">
-                        <AccordionTrigger
-                          className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
-                            borderRadius: "8px",
-                          }}
-                        >
-                          Full Stack Web & Mobile Development
-                        </AccordionTrigger>
-                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
-                          {services.find((s) => s.id === "ia")?.content}
-                          <div className="mt-4">
-                            <a
-                              href="#"
-                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
-                            >
-                              Learn more <Download className="h-4 w-4" />
-                            </a>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                    <Image
-                      src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-bottom-x2yIUFOLljpCxSX3TjHlXdhBA0ImlB.svg"
-                      alt=""
-                      width={203}
-                      height={42}
-                      className="absolute left-[110px] top-[-55px]"
-                    />
-                  </div>
+           {/* Full Stack Web & Mobile Development */}
+           <div className="absolute left-[2em] top-[27em] [&[data-state=open]]:z-30 accordion-dev">
+             <Accordion
+               type="single"
+               collapsible
+               value={expandedService}
+               onValueChange={handleServiceToggle}
+               className="w-[300px]"
+             >
+               <AccordionItem value="ia" className="border-none">
+                 <AccordionTrigger
+                   className={`font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 ${
+                     expandedService && expandedService !== "ia" ? "blur-[2px]" : ""
+                   }`}
+                   style={{
+                     backgroundImage:
+                       "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0) 119%)",
+                     borderRadius: "8px",
+                   }}
+                 >
+                   Full Stack Web & Mobile Development
+                 </AccordionTrigger>
+                 <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                   {services.find((s) => s.id === "ia")?.content}
+                   <div className="mt-4">
+                     <a
+                       href="#"
+                       className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                     >
+                       Learn more <Download className="h-4 w-4" />
+                     </a>
+                   </div>
+                 </AccordionContent>
+               </AccordionItem>
+             </Accordion>
+             <Image
+               src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/home-arrow-left-bottom-x2yIUFOLljpCxSX3TjHlXdhBA0ImlB.svg"
+               alt=""
+               width={203}
+               height={42}
+               className="absolute left-[110px] top-[-55px]"
+             />
+           </div>
 
-                  {/* Salesforce & Cloud Architecture */}
-                  <div className="absolute right-[9em] top-[31em] [&[data-state=open]]:z-30 accordion-salesforce">
-                    <Image
-                      src="/home-arrow-right-bottom.svg"
-                      alt=""
-                      width={236}
-                      height={58}
-                      className="absolute right-[325px] top-[-26px]"
-                    />
-                    <Accordion type="single" value={activeService} onValueChange={setActiveService} className="w-[320px]">
-                      <AccordionItem value="salesforce" className="border-none">
-                        <AccordionTrigger
-                          className="font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 [&[data-state=closed]]:blur-[2px]"
-                          style={{
-                            backgroundImage:
-                              "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 119%)",
-                            borderRadius: "8px",
-                          }}
-                        >
-                          Salesforce & Cloud Architecture
-                        </AccordionTrigger>
-                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
-                          {services.find((s) => s.id === "salesforce")?.content}
-                          <div className="mt-4">
-                            <a
-                              href="#"
-                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
-                            >
-                              Learn more <Download className="h-4 w-4" />
-                            </a>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div>
-                </div>
+           {/* Salesforce & Cloud Architecture */}
+           <div className="absolute right-[9em] top-[31em] [&[data-state=open]]:z-30 accordion-salesforce">
+             <Image
+               src="/home-arrow-right-bottom.svg"
+               alt=""
+               width={236}
+               height={58}
+               className="absolute right-[325px] top-[-26px]"
+             />
+             <Accordion
+               type="single"
+               collapsible
+               value={expandedService}
+               onValueChange={handleServiceToggle}
+               className="w-[320px]"
+             >
+               <AccordionItem value="salesforce" className="border-none">
+                 <AccordionTrigger
+                   className={`font-bold rounded-lg px-6 py-3 text-white hover:no-underline justify-center transition-all duration-300 ${
+                     expandedService && expandedService !== "salesforce" ? "blur-[2px]" : ""
+                   }`}
+                   style={{
+                     backgroundImage:
+                       "radial-gradient(circle at 101% 47%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 119%)",
+                     borderRadius: "8px",
+                   }}
+                 >
+                   Salesforce & Cloud Architecture
+                 </AccordionTrigger>
+                 <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20 text-center accordion-content-box">
+                   {services.find((s) => s.id === "salesforce")?.content}
+                   <div className="mt-4">
+                     <a
+                       href="#"
+                       className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                     >
+                       Learn more <Download className="h-4 w-4" />
+                     </a>
+                   </div>
+                 </AccordionContent>
+               </AccordionItem>
+             </Accordion>
+           </div>
+         </div>
 
-                {/* Mobile Layout (≤992px) */}
-                <div className="lg:hidden">
-                  <Accordion
-                    type="single"
-                    value={activeService}
-                    onValueChange={setActiveService}
-                    className="w-full space-y-4"
-                  >
-                    {services.map((service) => (
-                      <AccordionItem key={service.id} value={service.id} className="border-none">
-                        <AccordionTrigger className="bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800 transition-all duration-300">
-                          {service.title}
-                        </AccordionTrigger>
-                        <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
-                          {service.content}
-                          <div className="mt-4">
-                            <a
-                              href="#"
-                              className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
-                            >
-                              Learn more <Download className="h-4 w-4" />
-                            </a>
-                          </div>
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </div>
-              </div>
-            </section>
+         {/* Mobile Layout (≤992px) */}
+         <div className="lg:hidden">
+           <Accordion
+             type="single"
+             collapsible
+             value={expandedService}
+             onValueChange={handleServiceToggle}
+             className="w-full space-y-4"
+           >
+             {services.map((service) => (
+               <AccordionItem key={service.id} value={service.id} className="border-none">
+                 <AccordionTrigger
+                   className={`bg-zinc-800/50 rounded-lg px-6 py-3 text-white hover:no-underline hover:bg-zinc-800 transition-all duration-300 ${
+                     expandedService && expandedService !== service.id ? "blur-[2px]" : ""
+                   }`}
+                 >
+                   {service.title}
+                 </AccordionTrigger>
+                 <AccordionContent className="bg-zinc-800/90 mt-2 p-4 rounded-lg text-gray-300 relative z-20">
+                   {service.content}
+                   <div className="mt-4">
+                     <a
+                       href="#"
+                       className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                     >
+                       Learn more <Download className="h-4 w-4" />
+                     </a>
+                   </div>
+                 </AccordionContent>
+               </AccordionItem>
+             ))}
+           </Accordion>
+         </div>
+       </div>
+     </section>
 
         {/* Engineers Section */}
         <section className="py-24 bg-white">
