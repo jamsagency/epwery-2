@@ -917,7 +917,7 @@ export default function Home() {
         {/* Innovation Section */}
                 <section className="bg-[#FF4D00] py-24">
                   <div className="container">
-                    <div className="flex wrap-reverse lg:grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="flex flex-wrap-reverse lg:grid lg:grid-cols-2 gap-12 items-center">
                       <div className="max-w-xl">
                         <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">See Innovation in Action</h2>
                         <div className="space-y-6">
