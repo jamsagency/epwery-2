@@ -126,3 +126,10 @@ body {
 .testimonial-carousel > div {
   overflow: visible !important;
 }
+
+@media(max-width: 480px) {
+  .testimonial-box {
+    height: auto;
+    min-height: 450px;
+  }
+}

@@ -22,12 +22,12 @@ export default function InnovationPage() {
           />
 
           <div className="container relative">
-            <div className="max-w-3xl">
+            <div className="pt-32 md:pt-0 mb-16 md:mb-0 md:max-w-xl lg:max-w-3xl">
               <p className="text-[#FF4D00] text-lg mb-6">
                 <span className="text-white">PROVEN EXCELLENCE IN</span> ACTION
               </p>
 
-              <h1 className="text-6xl lg:text-7xl text-white font-bold mb-6">
+              <h1 className="text-5xl lg:text-7xl text-white font-bold mb-6">
                 See <span className="font-normal italic">Innovation</span> in Action
               </h1>
 
@@ -37,7 +37,7 @@ export default function InnovationPage() {
             </div>
 
             {/* Hero image */}
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] pointer-events-none select-none">
+            <div className="md:absolute right-0 top-1/2 md:-translate-y-1/2 w-[300px] pointer-events-none select-none">
               <Image
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/videos-hero-img-3kzdtHkw1XQgtiyHczxpx7VTpVICJW.png"
                 alt=""

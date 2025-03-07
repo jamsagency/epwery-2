@@ -635,7 +635,7 @@ export default function Home() {
                       loop 
                       playsInline
                     >
-                      <source src="/chat.mp4" type="video/mp4" />
+                      <source src="/chat-fixed.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                   </video>
 {/*                <div className="relative h-[600px]">
@@ -987,7 +987,7 @@ export default function Home() {
               }}
               className="w-full testimonial-carousel"
             >
-              <CarouselContent className="-ml-2 md:-ml-4">
+              <CarouselContent className="items-center md:items-stretch -ml-2 md:-ml-4">
                 {[
                   {
                     name: "Vinay Gidwaney",
@@ -1082,7 +1082,7 @@ export default function Home() {
                           alt={`${testimonial.name}'s company logo`}
                           className="block"
                         />
-                        <a href={testimonial.companyLink} target="_blank" className="block text-sm underline text-gray-800">{testimonial.logoPhrase}</a>
+                        <a href={testimonial.companyLink} target="_blank" className="text-center block text-sm underline text-gray-800">{testimonial.logoPhrase}</a>
                       </div>
                     </div>
                   </CarouselItem>
