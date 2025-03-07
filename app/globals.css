@@ -32,7 +32,13 @@
 .marquee-reverse {
   display: flex;
   gap: 1rem;
-  animation: marquee-reverse 5s linear infinite;
+  animation: marquee-reverse 6s linear infinite;
+}
+
+@media(max-width: 480px) {
+  .marquee-reverse {
+    animation: marquee-reverse 8s linear infinite;
+  }
 }
 
 @keyframes marquee-reverse {
@@ -41,6 +47,17 @@
   }
   100% {
     transform: translateX(0);
+  }
+}
+
+@media(max-width: 480px) {
+  @keyframes marquee-reverse {
+    0% {
+      transform: translateX(-500%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 }
 
