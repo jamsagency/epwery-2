@@ -860,7 +860,7 @@ export default function Home() {
         {/* Innovation Section */}
                 <section className="bg-[#FF4D00] py-24">
                   <div className="container">
-                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <div className="flex wrap-reverse lg:grid lg:grid-cols-2 gap-12 items-center">
                       <div className="max-w-xl">
                         <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">See Innovation in Action</h2>
                         <div className="space-y-6">
@@ -885,7 +885,8 @@ export default function Home() {
                         </div>
                       </div>
                       <div className="relative rounded-xl overflow-hidden shadow-2xl">
-                        <div className="aspect-video bg-black">
+                        <img src="/innovation-see-how-it-works.png" className="block w-full" />
+{/*                        <div className="aspect-video bg-black">
                           <iframe
                             className="w-full h-full"
                             src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0"
@@ -894,7 +895,7 @@ export default function Home() {
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                           ></iframe>
-                        </div>
+                        </div>*/}
                       </div>
                     </div>
                   </div>
