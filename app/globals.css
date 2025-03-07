@@ -37,7 +37,7 @@
 
 @media(max-width: 480px) {
   .marquee-reverse {
-    animation: marquee-reverse 8s linear infinite;
+    animation: marquee-reverse 20s linear infinite;
   }
 }
 
