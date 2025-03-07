@@ -196,6 +196,53 @@ export default function Home() {
    }
  }
 
+ const videoRef = useRef(null);
+
+ useEffect(() => {
+   if (videoRef.current) {
+     // Define handleClick in the proper scope
+     const handleClick = () => {
+       if (videoRef.current) {
+         videoRef.current.play();
+       }
+       document.removeEventListener('click', handleClick);
+     };
+     
+     // Try to play immediately
+     const playPromise = videoRef.current.play();
+     
+     // Handle potential play() rejection
+     if (playPromise !== undefined) {
+       playPromise.catch(error => {
+         console.log('Autoplay was prevented:', error);
+         
+         // Add a click event listener to play on first user interaction
+         document.addEventListener('click', handleClick, { once: true });
+       });
+     }
+     
+     // Create intersection observer to play when visible
+     const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+         if (entry.isIntersecting && videoRef.current) {
+           videoRef.current.play();
+         }
+       });
+     }, { threshold: 0.1 });
+     
+     if (videoRef.current) {
+       observer.observe(videoRef.current);
+     }
+     
+     return () => {
+       if (videoRef.current) {
+         observer.unobserve(videoRef.current);
+       }
+       document.removeEventListener('click', handleClick);
+     };
+   }
+ }, []);
+
   return (
     <div className="min-h-screen bg-zinc-900">
       <Navbar />
@@ -540,7 +587,7 @@ export default function Home() {
         {/* Engineers Section */}
         <section className="py-24 bg-white">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div className="max-w-xl">
                 <p
                   className="text-lg mb-6 font-semibold"
@@ -581,7 +628,17 @@ export default function Home() {
                 </div>
               </div>
               <div className="relative pt-8">
-                <div className="relative h-[600px]">
+                <video 
+                      ref={videoRef}
+                      className="w-full h-full object-cover shadow-xl rounded-[24px]"
+                      muted 
+                      loop 
+                      playsInline
+                    >
+                      <source src="/chat.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                  </video>
+{/*                <div className="relative h-[600px]">
                   <Image
                     src="/message-1.svg"
                     alt="Message 1"
@@ -618,7 +675,7 @@ export default function Home() {
                       visibleMessages.includes(4) ? "opacity-100" : "opacity-0"
                     }`}
                   />
-                </div>
+                </div>*/}
               </div>
             </div>
           </div>
