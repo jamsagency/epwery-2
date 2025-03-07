@@ -630,7 +630,7 @@ export default function Home() {
               <div className="relative pt-8">
                 <video 
                       ref={videoRef}
-                      className="w-full h-full object-cover shadow-xl rounded-[24px]"
+                      className="w-full h-full object-cover"
                       muted 
                       loop 
                       playsInline
