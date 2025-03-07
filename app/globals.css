@@ -32,7 +32,7 @@
 .marquee-reverse {
   display: flex;
   gap: 1rem;
-  animation: marquee-reverse 3s linear infinite;
+  animation: marquee-reverse 5s linear infinite;
 }
 
 @keyframes marquee-reverse {
