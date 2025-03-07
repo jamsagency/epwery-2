@@ -253,13 +253,13 @@ export default function Home() {
                     </div>
                     <p className="text-sm text-gray-300">hours delivered on the last year</p>
                   </div>
-                  <div className="text-center md:border-r border-gray-100/30 px-4">
+                  <div className="hidden md:block text-center md:border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                       <AnimatedCounter end="21,5K" />
                     </div>
                     <p className="text-sm text-gray-300">active users with access to our apps</p>
                   </div>
-                  <div className="text-center border-r border-gray-100/30 px-4">
+                  <div className="text-center md:border-r border-gray-100/30 px-4">
                     <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                       <AnimatedCounter end="100+" />
                     </div>
@@ -488,8 +488,9 @@ export default function Home() {
                    {services.find((s) => s.id === "salesforce")?.content}
                    <div className="mt-4">
                      <a
-                       href="#"
+                       href="/salesforce.pdf"
                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                       target="_blank"
                      >
                        Learn more <Download className="h-4 w-4" />
                      </a>
@@ -732,7 +733,7 @@ export default function Home() {
           <div className="relative">
             <div className="marquee-container">
               <div className="marquee marquee-reverse">
-                {[...Array(8)].map((_, setIndex) => (
+                {[...Array(1)].map((_, setIndex) => (
                   <div key={`set-${setIndex}`} className="rounded-lg flex gap-4">
                     {[
                       {
@@ -753,6 +754,86 @@ export default function Home() {
                       {
                         src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/python-JkgWiLA77Cxk3IfxUW6bTXC8VJgkbg.png",
                         alt: "Python",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/react.png",
+                        alt: "React",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/docker.png",
+                        alt: "Docker",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/twilio.png",
+                        alt: "Twilio",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/paypal.png",
+                        alt: "PayPal",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/docusign.png",
+                        alt: "Docusign",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/datadog.png",
+                        alt: "Datadog",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/pytorch.png",
+                        alt: "Pytorch",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/selenium.png",
+                        alt: "Selenium",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/sendgrid.png",
+                        alt: "Sendgrid",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/flutter.png",
+                        alt: "Flutter",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/slack.png",
+                        alt: "Slack",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/swift.png",
+                        alt: "Swift",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/tensorflow.png",
+                        alt: "Tensorflow",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/github.png",
+                        alt: "GitHub",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/go.png",
+                        alt: "Go",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/hf.png",
+                        alt: "HF",
                         bg: "bg-zinc-800/50",
                       },
                     ].map((logo, i) => (
@@ -777,26 +858,47 @@ export default function Home() {
         </section>
 
         {/* Innovation Section */}
-        <section className="bg-[#FF4D00] py-24">
-          <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="max-w-xl">
-                <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">See Innovation in Action</h2>
-                <div className="space-y-6">
-                  <p className="text-black text-lg leading-relaxed">
-                    Explore how we continuously test and evaluate emerging technologies to uncover their true potential
-                    and deliver meaningful value. In this section, you'll find examples of cutting-edge experiments and
-                    integrations that go beyond fleeting trends.
-                  </p>
-                  <p className="text-black text-lg leading-relaxed">
-                    For years, our commitment to identifying impactful solutions has set us apart, ensuring we stay
-                    ahead without compromising on what truly matters: innovation that makes a difference.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+                <section className="bg-[#FF4D00] py-24">
+                  <div className="container">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                      <div className="max-w-xl">
+                        <h2 className="text-4xl md:text-5xl font-bold text-black mb-8">See Innovation in Action</h2>
+                        <div className="space-y-6">
+                          <p className="text-black text-lg leading-relaxed">
+                            Explore how we continuously test and evaluate emerging technologies to uncover their true potential
+                            and deliver meaningful value. In this section, you'll find examples of cutting-edge experiments and
+                            integrations that go beyond fleeting trends.
+                          </p>
+                          <p className="text-black text-lg leading-relaxed">
+                            For years, our commitment to identifying impactful solutions has set us apart, ensuring we stay
+                            ahead without compromising on what truly matters: innovation that makes a difference.
+                          </p>
+                          <div className="pt-6">
+                            <Button 
+                              onClick={() => router.push('/innovation')}
+                              size="lg" 
+                              className="bg-black text-white hover:bg-zinc-800 rounded-full px-8"
+                            >
+                              Explore our innovations
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="relative rounded-xl overflow-hidden shadow-2xl">
+                        <div className="aspect-video bg-black">
+                          <iframe
+                            className="w-full h-full"
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&rel=0"
+                            title="Epwery Innovation Video"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
 
         {/* Clients Section */}
         <section ref={clientsRef} id="clients" className="relative py-24 bg-zinc-900 overflow-hidden">
@@ -835,7 +937,9 @@ export default function Home() {
                     image: "https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg",
                     quote: "Epwery helped us get a world class software team up and running in record time. The team is highly skilled and versatile and has become a great extension to our onsite full time employees.",
                     logo: "/onedigital.webp",
-                    logoWidth: 150
+                    logoWidth: 150,
+                    logoPhrase: "Advocates of Health, Success and Financial Security",
+                    companyLink: "https://google.com"
                   },
                   {
                     name: "Poonam Kalinani",
@@ -843,7 +947,9 @@ export default function Home() {
                     image: "https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE",
                     quote: "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses.",
                     logo: "/2u-logo.svg",
-                    logoWidth: 64
+                    logoWidth: 64,
+                    logoPhrase: "Advocates of Health, Success and Financial Security",
+                    companyLink: "https://google.com"
                   },
                   {
                     name: "Veer Gidwaney",
@@ -851,7 +957,8 @@ export default function Home() {
                     image: "https://media.licdn.com/dms/image/v2/C5603AQF-13tyiwjybQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1657300368033?e=1744848000&v=beta&t=jIovGveIgqDOC5nXUK1LXrSzcNoDnFr4FLAv02Zj7Ng",
                     quote: "Our exceptional EPWERY team is fully dedicated to Ansel's success, embracing our mission and values while driving rapid innovation from ideation to market—a true competitive edge.",
                     logo: "/ansel-logo.svg",
-                    logoWidth: 100
+                    logoWidth: 100,
+                    logoPhrase: "Better Suplemental Health Insurance"
                   },
                   // Duplicated testimonials to reach 5
                   {
@@ -860,7 +967,19 @@ export default function Home() {
                     image: "https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg",
                     quote: "Epwery helped us get a world class software team up and running in record time. The team is highly skilled and versatile and has become a great extension to our onsite full time employees.",
                     logo: "/onedigital.webp",
-                    logoWidth: 150
+                    logoWidth: 150,
+                    logoPhrase: "Advocates of Health, Success and Financial Security",
+                    companyLink: "https://google.com"
+                  },
+                  {
+                    name: "Greg Kegeles",
+                    role: "Operating Partner at Newlight Partners",
+                    image: "/greg-kegeles.jpeg",
+                    quote: "Epwery has been an excellent partner for years, especially in handling complex Salesforce projects across industries ranging from education to financial services. Their expertise, reliability, and commitment to delivering high-quality solutions make them a trusted partner in every engagement. Working with Epwery has always been a seamless and positive experience, and I highly recommend them.",
+                    logo: "/newlight-partners.png",
+                    logoWidth: 150,
+                    logoPhrase: "Advocates of Health, Success and Financial Security",
+                    companyLink: "https://google.com"
                   },
                   {
                     name: "Poonam Kalinani",
@@ -868,7 +987,9 @@ export default function Home() {
                     image: "https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE",
                     quote: "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses.",
                     logo: "/2u-logo.svg",
-                    logoWidth: 64
+                    logoWidth: 64,
+                    logoPhrase: "Advocates of Health, Success and Financial Security",
+                    companyLink: "https://google.com"
                   }
                 ].map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3">
@@ -895,13 +1016,15 @@ export default function Home() {
                           <p className="text-zinc-500">{testimonial.role}</p>
                         </div>
                       </div>
-                      <div className="flex justify-center items-center mt-4">
+                      <div className="flex justify-center items-center mt-4 flex-wrap flex-col gap-4">
                         <Image
                           src={testimonial.logo || "/placeholder.svg"}
                           width={testimonial.logoWidth}
                           height={64}
                           alt={`${testimonial.name}'s company logo`}
+                          className="block"
                         />
+                        <a href={testimonial.companyLink} target="_blank" className="block text-sm underline text-gray-800">{testimonial.logoPhrase}</a>
                       </div>
                     </div>
                   </CarouselItem>
