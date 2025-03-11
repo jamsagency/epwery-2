@@ -10,6 +10,7 @@ import { useCallback } from "react"
 import { useRouter, usePathname } from "next/navigation"
 import dynamic from "next/dynamic"
 import { useEffect as useEffect2, useState as useState2, useRef as useRef2 } from "react"
+import AutoplayPlugin from 'embla-carousel-autoplay'
 import {
   Carousel,
   CarouselContent,
@@ -167,24 +168,28 @@ export default function Home() {
       title: "AI & Machine Learning",
       content:
         "We specialize in AI and Machine Learning, leveraging the latest technologies to build intelligent solutions that drive innovation and operational excellence. From predictive analytics to natural language processing, our AI-driven strategies empower businesses to make smarter decisions, automate processes, and unlock new opportunities for growth.",
+      link: "ia-machine.pdf"
     },
     {
       id: "dedicated",
       title: "Team Building",
       content:
         "Our Team Building services provide flexible solutions to suit your project needs, offering both full-team integration and staff augmentation. For end-to-end project execution, we assemble dedicated, cross-functional teams that include experienced Project Managers (PMs), skilled Developers, innovative UI/UX Designers, and meticulous Quality Assurance (QA) specialists, ensuring seamless collaboration and high-quality results. Alternatively, through our staff augmentation model, we supply individual team members to enhance your existing workforce, allowing you to fill specific skill gaps and scale resources dynamically while maintaining your team’s workflow and culture.",
+      link: "team-building.pdf"
     },
     {
       id: "ia",
       title: "Full Stack Web & Mobile Development",
       content:
         "We deliver innovative Full Stack Web and Mobile Development services, creating user-friendly, high-performance applications that drive business success. From intuitive websites to feature-rich mobile apps, our solutions are designed to meet modern market demands, ensuring seamless functionality and a superior user experience across all devices.",
+      link: "fullstack.pdf"
     },
     {
       id: "salesforce",
       title: "Salesforce & Cloud Architecture",
       content:
         "Our expertise in Salesforce and Cloud Architecture ensures businesses can harness the power of cutting-edge technologies to streamline operations, improve scalability, and enhance customer engagement. We design and implement tailored cloud solutions, seamlessly integrating Salesforce into your existing infrastructure to maximize efficiency and foster growth.",
+      link: "salesforce.pdf"
     },
   ]
 
@@ -240,6 +245,29 @@ export default function Home() {
        }
        document.removeEventListener('click', handleClick);
      };
+   }
+ }, []);
+
+ const [isPaused, setIsPaused] = useState(false);
+ const carouselApi = useRef(null);
+
+ // Create autoplay options
+ const autoplayOptions = {
+   delay: 1000,
+   stopOnInteraction: false,
+   stopOnMouseEnter: true, // This is key for your hover functionality
+   rootNode: (emblaRoot) => emblaRoot.parentElement,
+ };
+
+ const handleMouseEnter = useCallback(() => {
+   setIsPaused(true);
+   // The autoplay will stop automatically due to stopOnMouseEnter: true
+ }, []);
+
+ const handleMouseLeave = useCallback(() => {
+   setIsPaused(false);
+   if (carouselApi.current && carouselApi.current.plugins().autoplay) {
+     carouselApi.current.plugins().autoplay.play();
    }
  }, []);
 
@@ -396,8 +424,9 @@ export default function Home() {
                    {services.find((s) => s.id === "custom")?.content}
                    <div className="mt-4">
                      <a
-                       href="#"
+                       href="/ia-machine.pdf"
                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
+                       target="_blank"
                      >
                        Learn more <Download className="h-4 w-4" />
                      </a>
@@ -447,7 +476,8 @@ export default function Home() {
                    {services.find((s) => s.id === "dedicated")?.content}
                    <div className="mt-4">
                      <a
-                       href="#"
+                       href="/team-building.pdf"
+                       target="_blank"
                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
                      >
                        Learn more <Download className="h-4 w-4" />
@@ -484,7 +514,8 @@ export default function Home() {
                    {services.find((s) => s.id === "ia")?.content}
                    <div className="mt-4">
                      <a
-                       href="#"
+                       href="/fullstack.pdf"
+                       target="_blank"
                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
                      >
                        Learn more <Download className="h-4 w-4" />
@@ -570,7 +601,8 @@ export default function Home() {
                    {service.content}
                    <div className="mt-4">
                      <a
-                       href="#"
+                       href={service.link}
+                       target="_blank"
                        className="inline-flex items-center gap-2 text-orange-500 hover:text-orange-400 transition-colors"
                      >
                        Learn more <Download className="h-4 w-4" />
@@ -984,8 +1016,18 @@ export default function Home() {
               opts={{
                 align: "start",
                 loop: true,
+                autoplay: true,
+                delay: 1000,
+                plugins: [
+                      AutoplayPlugin({ delay: 1000, stopOnInteraction: false, stopOnMouseEnter: true })
+                    ]
               }}
               className="w-full testimonial-carousel"
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              setApi={(api) => {
+                  carouselApi.current = api;
+                }}
             >
               <CarouselContent className="items-center md:items-stretch -ml-2 md:-ml-4">
                 {[
@@ -1006,7 +1048,7 @@ export default function Home() {
                     quote: "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses.",
                     logo: "/2u-logo.svg",
                     logoWidth: 64,
-                    logoPhrase: "Advocates of Health, Success and Financial Security",
+                    logoPhrase: "Creating a Better Future for All with edX | 2U",
                     companyLink: "https://google.com"
                   },
                   {
@@ -1033,10 +1075,10 @@ export default function Home() {
                     name: "Greg Kegeles",
                     role: "Operating Partner at Newlight Partners",
                     image: "/greg-kegeles.jpeg",
-                    quote: "Epwery has been an excellent partner for years, especially in handling complex Salesforce projects across industries ranging from education to financial services. Their expertise, reliability, and commitment to delivering high-quality solutions make them a trusted partner in every engagement. Working with Epwery has always been a seamless and positive experience, and I highly recommend them.",
+                    quote: "Epwery has been an excellent partner for years, especially in handling complex Salesforce projects across industries ranging from education to financial services. Their expertise, reliability, and commitment to delivering high-quality solutions make them a trusted partner in every engagement.",
                     logo: "/newlight-partners.png",
                     logoWidth: 150,
-                    logoPhrase: "Advocates of Health, Success and Financial Security",
+                    logoPhrase: "Building Businesses",
                     companyLink: "https://google.com"
                   },
                   {
@@ -1051,7 +1093,7 @@ export default function Home() {
                   }
                 ].map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3">
-                    <div className="bg-white rounded-3xl p-8 pt-14 relative testimonial-box h-full">
+                    <div className="bg-white rounded-3xl p-6 pt-14 relative testimonial-box h-full">
                       <div className="absolute -top-8 left-1/2 -translate-x-1/2">
                         <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-white">
                           <Image

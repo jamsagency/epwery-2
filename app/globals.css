@@ -32,12 +32,12 @@
 .marquee-reverse {
   display: flex;
   gap: 1rem;
-  animation: marquee-reverse 6s linear infinite;
+  animation: marquee-reverse 15s linear infinite;
 }
 
 @media(max-width: 480px) {
   .marquee-reverse {
-    animation: marquee-reverse 20s linear infinite;
+    animation: marquee-reverse 25s linear infinite;
   }
 }
 
@@ -130,6 +130,6 @@ body {
 @media(max-width: 480px) {
   .testimonial-box {
     height: auto;
-    min-height: 450px;
+    min-height: 540px;
   }
 }
