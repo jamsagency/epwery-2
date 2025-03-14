@@ -662,12 +662,12 @@ export default function Home() {
               <div className="relative pt-8">
                 <video 
                       ref={videoRef}
-                      className="w-full h-full object-cover"
+                      className="h-full object-contain"
                       muted 
                       loop 
                       playsInline
                     >
-                      <source src="/chat-fixed.mp4" type="video/mp4" />
+                      <source src="/chat-fix.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
                   </video>
 {/*                <div className="relative h-[600px]">
@@ -1039,7 +1039,7 @@ export default function Home() {
                     logo: "/onedigital.webp",
                     logoWidth: 150,
                     logoPhrase: "Advocates of Health, Success and Financial Security",
-                    companyLink: "https://google.com"
+                    companyLink: "https://www.onedigital.com/"
                   },
                   {
                     name: "Poonam Kalinani",
@@ -1047,9 +1047,9 @@ export default function Home() {
                     image: "https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE",
                     quote: "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses.",
                     logo: "/2u-logo.svg",
-                    logoWidth: 64,
+                    logoWidth: 54,
                     logoPhrase: "Creating a Better Future for All with edX | 2U",
-                    companyLink: "https://google.com"
+                    companyLink: "https://2u.com/"
                   },
                   {
                     name: "Veer Gidwaney",
@@ -1058,18 +1058,8 @@ export default function Home() {
                     quote: "Our exceptional EPWERY team is fully dedicated to Ansel's success, embracing our mission and values while driving rapid innovation from ideation to market—a true competitive edge.",
                     logo: "/ansel-logo.svg",
                     logoWidth: 100,
-                    logoPhrase: "Better Suplemental Health Insurance"
-                  },
-                  // Duplicated testimonials to reach 5
-                  {
-                    name: "Vinay Gidwaney",
-                    role: "Entrepreneur and advisor",
-                    image: "https://media.licdn.com/dms/image/v2/C4E03AQG004hqX_ADrg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1638284298104?e=1744848000&v=beta&t=ymuiQ2xTCkYmASHYtZdTQw9EXM1nVNINO6noztFEEVg",
-                    quote: "Epwery helped us get a world class software team up and running in record time. The team is highly skilled and versatile and has become a great extension to our onsite full time employees.",
-                    logo: "/onedigital.webp",
-                    logoWidth: 150,
-                    logoPhrase: "Advocates of Health, Success and Financial Security",
-                    companyLink: "https://google.com"
+                    logoPhrase: "Better Suplemental Health Insurance",
+                    companyLink: "https://www.joinansel.com/"
                   },
                   {
                     name: "Greg Kegeles",
@@ -1079,17 +1069,17 @@ export default function Home() {
                     logo: "/newlight-partners.png",
                     logoWidth: 150,
                     logoPhrase: "Building Businesses",
-                    companyLink: "https://google.com"
+                    companyLink: "https://www.newlightpartners.com/"
                   },
                   {
-                    name: "Poonam Kalinani",
+                    name: "Jay Chakrapani",
                     role: "Chief Product Officer",
-                    image: "https://media.licdn.com/dms/image/v2/D5603AQGgiKfMv5e28Q/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1729624869853?e=1744848000&v=beta&t=BY5U4ehSDOU5StL-Tzt1JY_1QExBBSP-IP0RFFxRBaE",
-                    quote: "With strong engineering and a business-first mindset, they excel at crafting MVPs and scaling products. Their leadership and practical architecture make them invaluable for product businesses.",
-                    logo: "/2u-logo.svg",
-                    logoWidth: 64,
-                    logoPhrase: "Advocates of Health, Success and Financial Security",
-                    companyLink: "https://google.com"
+                    image: "/jay-c.jpg",
+                    quote: "This company has been pivotal in my projects for 7+ years, offering adaptable teams, exceptional service, and consistently achieving outstanding, cost-effective results.",
+                    logo: "/brainpop.jpg",
+                    logoWidth: 75,
+                    logoPhrase: "The power of joyful learning",
+                    companyLink: "https://www.brainpop.com/"
                   }
                 ].map((testimonial, index) => (
                   <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/3">
@@ -1116,15 +1106,17 @@ export default function Home() {
                           <p className="text-zinc-500">{testimonial.role}</p>
                         </div>
                       </div>
-                      <div className="flex justify-center items-center mt-4 flex-wrap flex-col gap-4">
-                        <Image
-                          src={testimonial.logo || "/placeholder.svg"}
-                          width={testimonial.logoWidth}
-                          height={64}
-                          alt={`${testimonial.name}'s company logo`}
-                          className="block"
-                        />
-                        <a href={testimonial.companyLink} target="_blank" className="text-center block text-sm underline text-gray-800">{testimonial.logoPhrase}</a>
+                      <div className="mt-4 text-center self-end">
+                        <a href={testimonial.companyLink} target="_blank">
+                          <Image
+                            src={testimonial.logo || "/placeholder.svg"}
+                            width={testimonial.logoWidth}
+                            height={64}
+                            alt={`${testimonial.name}'s company logo`}
+                            className="inline-block mb-4"
+                          />
+                        </a>
+                        <p className="text-center block text-sm text-gray-800">{testimonial.logoPhrase}</p>
                       </div>
                     </div>
                   </CarouselItem>
