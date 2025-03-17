@@ -619,7 +619,7 @@ export default function Home() {
         {/* Engineers Section */}
         <section className="py-24 bg-white">
           <div className="container">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-4 md:gap-12 items-center">
               <div className="max-w-xl">
                 <p
                   className="text-lg mb-6 font-semibold"
@@ -659,10 +659,10 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className="relative pt-8">
+              <div className="relative md:pt-8">
                 <video 
                       ref={videoRef}
-                      className="h-full object-contain"
+                      className="md:h-full object-contain"
                       muted 
                       loop 
                       playsInline
