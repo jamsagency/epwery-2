@@ -823,7 +823,245 @@ export default function Home() {
             <div className="marquee-container">
               <div className="marquee marquee-reverse">
                 {[...Array(1)].map((_, setIndex) => (
-                  <div key={`set-${setIndex}`} className="rounded-lg flex gap-4">
+                  <div className="marquee-content" key={`set-${setIndex}`} className="rounded-lg flex gap-4">
+                    {[
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/js-P11bfwIQEJwhpT29R2YPlH9rg2l1k4.png",
+                        alt: "JavaScript",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/stripe-2wNVOi3Kh7QDNJpu8cqdqJKlUIZhiG.png",
+                        alt: "Stripe",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/neo4j-s7ttZpMpY3UICHuN3sHh284pOmdBIw.png",
+                        alt: "Neo4j",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/python-JkgWiLA77Cxk3IfxUW6bTXC8VJgkbg.png",
+                        alt: "Python",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/react.png",
+                        alt: "React",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/docker.png",
+                        alt: "Docker",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/twilio.png",
+                        alt: "Twilio",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/paypal.png",
+                        alt: "PayPal",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/docusign.png",
+                        alt: "Docusign",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/datadog.png",
+                        alt: "Datadog",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/pytorch.png",
+                        alt: "Pytorch",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/selenium.png",
+                        alt: "Selenium",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/sendgrid.png",
+                        alt: "Sendgrid",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/flutter.png",
+                        alt: "Flutter",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/slack.png",
+                        alt: "Slack",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/swift.png",
+                        alt: "Swift",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/tensorflow.png",
+                        alt: "Tensorflow",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/github.png",
+                        alt: "GitHub",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/go.png",
+                        alt: "Go",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/hf.png",
+                        alt: "HF",
+                        bg: "bg-zinc-800/50",
+                      },
+                    ].map((logo, i) => (
+                      <div
+                        key={`logo-${setIndex}-${i}`}
+                        className={`flex-shrink-0 flex items-center justify-center ${logo.bg} rounded-lg w-[120px] h-[60px] px-4`}
+                      >
+                        <Image
+                          src={logo.src || "/placeholder.svg"}
+                          alt={logo.alt}
+                          width={100}
+                          height={40}
+                          className="w-auto h-8 object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+                {[...Array(1)].map((_, setIndex) => (
+                  <div className="marquee-content" key={`set-${setIndex}`} className="rounded-lg flex gap-4">
+                    {[
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/js-P11bfwIQEJwhpT29R2YPlH9rg2l1k4.png",
+                        alt: "JavaScript",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/stripe-2wNVOi3Kh7QDNJpu8cqdqJKlUIZhiG.png",
+                        alt: "Stripe",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/neo4j-s7ttZpMpY3UICHuN3sHh284pOmdBIw.png",
+                        alt: "Neo4j",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/python-JkgWiLA77Cxk3IfxUW6bTXC8VJgkbg.png",
+                        alt: "Python",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/react.png",
+                        alt: "React",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/docker.png",
+                        alt: "Docker",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/twilio.png",
+                        alt: "Twilio",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/paypal.png",
+                        alt: "PayPal",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/docusign.png",
+                        alt: "Docusign",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/datadog.png",
+                        alt: "Datadog",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/pytorch.png",
+                        alt: "Pytorch",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/selenium.png",
+                        alt: "Selenium",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/sendgrid.png",
+                        alt: "Sendgrid",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/flutter.png",
+                        alt: "Flutter",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/slack.png",
+                        alt: "Slack",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/swift.png",
+                        alt: "Swift",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/tensorflow.png",
+                        alt: "Tensorflow",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/github.png",
+                        alt: "GitHub",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/go.png",
+                        alt: "Go",
+                        bg: "bg-zinc-800/50",
+                      },
+                      {
+                        src: "/hf.png",
+                        alt: "HF",
+                        bg: "bg-zinc-800/50",
+                      },
+                    ].map((logo, i) => (
+                      <div
+                        key={`logo-${setIndex}-${i}`}
+                        className={`flex-shrink-0 flex items-center justify-center ${logo.bg} rounded-lg w-[120px] h-[60px] px-4`}
+                      >
+                        <Image
+                          src={logo.src || "/placeholder.svg"}
+                          alt={logo.alt}
+                          width={100}
+                          height={40}
+                          className="w-auto h-8 object-contain"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ))}
+                {[...Array(1)].map((_, setIndex) => (
+                  <div className="marquee-content" key={`set-${setIndex}`} className="rounded-lg flex gap-4">
                     {[
                       {
                         src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/js-P11bfwIQEJwhpT29R2YPlH9rg2l1k4.png",

@@ -32,32 +32,24 @@
 .marquee-reverse {
   display: flex;
   gap: 1rem;
-  animation: marquee-reverse 15s linear infinite;
+  animation: marquee-reverse 90s linear infinite;
+  width: max-content;
 }
 
-@media(max-width: 480px) {
-  .marquee-reverse {
-    animation: marquee-reverse 25s linear infinite;
-  }
+.marquee-content {
+  animation: none;
+  width: max-content;
+}
+.marquee-content > * {
+  flex-shrink: 0;
 }
 
 @keyframes marquee-reverse {
   0% {
-    transform: translateX(-50%);
-  }
-  100% {
     transform: translateX(0);
   }
-}
-
-@media(max-width: 480px) {
-  @keyframes marquee-reverse {
-    0% {
-      transform: translateX(-500%);
-    }
-    100% {
-      transform: translateX(0);
-    }
+  100% {
+    transform: translateX(-100%);
   }
 }
 
